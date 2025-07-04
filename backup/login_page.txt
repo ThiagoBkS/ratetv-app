@@ -1,0 +1,110 @@
+import 'dart:ffi';
+
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return LoginPageState();
+  }
+}
+
+class LoginPageState extends State<LoginPage> {
+  double padding = 16;
+  String email = "";
+  String password = "";
+
+  Widget _body() {
+    return SingleChildScrollView(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Padding(
+          padding: EdgeInsets.all(padding),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: padding),
+              Card(
+                child: Padding(
+                  padding: EdgeInsets.all(padding),
+                  child: Column(
+                    children: [
+                      TextField(
+                        onChanged: (value) => {email = value},
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "Email",
+                        ),
+                      ),
+                      SizedBox(height: padding),
+                      TextField(
+                        onChanged: (value) => {password = value},
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "Password",
+                        ),
+                      ),
+                      SizedBox(height: padding),
+                      Container(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all(
+                              Color.fromRGBO(0, 156, 222, 1),
+                            ),
+                            shape: WidgetStatePropertyAll(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(2),
+                              ),
+                            ),
+                          ),
+                          onPressed: () => {
+                            if (email == "admin" && password == "admin")
+                              {
+                                Navigator.of(
+                                  context,
+                                ).pushReplacementNamed("/home"),
+                              },
+                          },
+                          child: Text(
+                            "Entrar",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Image.network(
+              "https://images.unsplash.com/photo-1624139283061-adee53a59791?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmxhY2slMjBncmFkaWVudHxlbnwwfHwwfHx8MA%3D%3D",
+              fit: BoxFit.cover,
+            ),
+          ),
+          Container(color: Colors.black.withValues(alpha: 0.5)),
+          _body(),
+        ],
+      ),
+    );
+  }
+}
