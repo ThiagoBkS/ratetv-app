@@ -18,12 +18,12 @@ class LoginPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  // bottomLeft: Radius.circular(50),
-                  // bottomRight: Radius.circular(50),
+                  bottomLeft: Radius.circular(16),
+                  bottomRight: Radius.circular(16),
                 ),
                 image: DecorationImage(
                   image: NetworkImage(
-                    'https://hd2.tudocdn.net/1006404?w=824&h=494',
+                    'https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQYTrk5tFtvqVDFXvz8IHIh2E44Mb_h8kHSOEAqIY5pTmQqUKX4XqAZUGGZCEe6mt07zcabPgrLHCwfYrhGQhSO8cBaMzDHoNE8mKvJCOIMbYJEnt2mzICU1x_uguuDrWXNWxHl87hc8X6fVQke8UN3AJ.jpg?r=345',
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -88,7 +88,10 @@ class LoginPage extends StatelessWidget {
                           width: double.infinity,
                           height: 48,
                           child: OutlinedButton(
-                            onPressed: () => {},
+                            onPressed: () => {
+                              print(MediaQuery.of(context).size.height),
+                              print(MediaQuery.of(context).size.width),
+                            },
                             style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all(
                                 Color.fromRGBO(20, 71, 230, 1),
