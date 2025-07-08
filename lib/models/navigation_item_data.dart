@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class NavigationItemModel {
   final IconData icon;
   final String label;
-  final VoidCallback onPressed;
+  final void Function(BuildContext) onPressed;
   final bool active;
 
   NavigationItemModel({

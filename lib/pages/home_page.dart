@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_a/models/section_data.dart';
-import 'package:project_a/widgets/category/category_section.dart';
+import 'package:project_a/widgets/bottom_navigation/bottom_navigation.dart';
 import 'package:project_a/widgets/card_list/horizontal_card_list.dart';
-import 'package:project_a/widgets/navigation/bottom_navigation.dart';
+import 'package:project_a/widgets/category/category_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

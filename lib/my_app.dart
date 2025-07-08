@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/pages/home_page.dart';
-import 'package:project_a/pages/login_page.dart';
-import 'package:project_a/pages/profile_page.dart';
+import 'package:project_a/routes/app_routes.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,22 +8,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      title: "Meu App",
+      initialRoute: "/",
       theme: ThemeData(
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Color(0xFF121212), // fundo escuro
+        scaffoldBackgroundColor: Color(0xFF121212),
         textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
       ),
-      initialRoute: '/profile',
-      routes: {
-        '/login': (context) => LoginPage(),
-        '/home': (context) => HomePage(),
-        '/profile': (context) => ProfilePage(),
-      },
+      routes: {for (final route in appRoutes) route.path: route.builder},
     );
   }
 }
