@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/widgets/bottom_navigation/bottom_navigation.dart';
+import 'package:project_a/widgets/custom_bottom_navigation.dart';
 
 class ListsPage extends StatelessWidget {
   const ListsPage({super.key});
@@ -22,8 +22,9 @@ class ListsPage extends StatelessWidget {
           ),
         ),
       ),
-      body: SafeArea(child: Text("Lists")),
-      bottomNavigationBar: SafeArea(child: BottomNavigation()),
+
+      // body: SafeArea(child: Text("Lists")),
+      bottomNavigationBar: CustomBottomNavigation(),
     );
   }
 }

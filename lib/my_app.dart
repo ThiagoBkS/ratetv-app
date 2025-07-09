@@ -8,11 +8,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Meu App",
-      initialRoute: "/",
+      title: "Project A",
+      initialRoute: "/profile",
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
         textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+        splashColor: Colors.blue.withValues(alpha: 0.1),
+        highlightColor: Colors.transparent,
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,

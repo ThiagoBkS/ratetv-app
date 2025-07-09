@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:project_a/pages/home_page.dart';
 import 'package:project_a/pages/lists_page.dart';
 import 'package:project_a/pages/profile_page.dart';
@@ -10,12 +10,14 @@ class AppRoute {
   final String label;
   final WidgetBuilder builder;
   final IconData icon;
+  final bool? hideButton;
 
   AppRoute({
     required this.path,
     required this.label,
     required this.builder,
     required this.icon,
+    this.hideButton = false,
   });
 }
 
@@ -24,24 +26,24 @@ final List<AppRoute> appRoutes = [
     path: '/',
     builder: (context) => HomePage(),
     label: 'Home',
-    icon: FontAwesomeIcons.house,
+    icon: LucideIcons.house,
   ),
   AppRoute(
     path: '/search',
     builder: (context) => SearchPage(),
     label: 'Search',
-    icon: FontAwesomeIcons.magnifyingGlass,
+    icon: LucideIcons.search,
   ),
   AppRoute(
     path: '/list',
     builder: (context) => ListsPage(),
     label: 'Lists',
-    icon: FontAwesomeIcons.solidBookmark,
+    icon: LucideIcons.bookmark,
   ),
   AppRoute(
-    path: '/profiel',
+    path: '/profile',
     builder: (context) => ProfilePage(),
     label: 'Profile',
-    icon: FontAwesomeIcons.solidUser,
+    icon: LucideIcons.userRound,
   ),
 ];
