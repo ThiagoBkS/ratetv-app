@@ -9,18 +9,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Project A",
-      initialRoute: "/profile",
+      initialRoute: '/',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
-        splashColor: Colors.blue.withValues(alpha: 0.1),
-        highlightColor: Colors.transparent,
-      ),
+      theme: ThemeData(brightness: Brightness.dark),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Color(0xFF121212),
         textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+        scaffoldBackgroundColor: Color.fromRGBO(21, 21, 29, 1),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Color.fromRGBO(21, 21, 29, 1),
+        ),
       ),
       routes: {for (final route in appRoutes) route.path: route.builder},
     );

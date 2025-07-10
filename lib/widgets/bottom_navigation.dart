@@ -2,30 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/routes/app_routes.dart';
 
-class CustomBottomNavigation extends StatefulWidget {
-  const CustomBottomNavigation({super.key});
+class BottomNavigation extends StatefulWidget {
+  final int pageIndex;
+
+  const BottomNavigation({super.key, required this.pageIndex});
+
   @override
   State<StatefulWidget> createState() {
-    return CustomBottomNavigationState();
+    return BottomNavigationState();
   }
 }
 
-class CustomBottomNavigationState extends State<CustomBottomNavigation> {
-  int currentPageIndex = 0;
+class BottomNavigationState extends State<BottomNavigation> {
+  late int currentPageIndex;
 
-  void updateCurrentPageIndex(int newIndex) {
-    setState(() {
-      currentPageIndex = newIndex;
-    });
-  }
-
-  void navigateToPage(List<AppRoute> routes) {
-    Navigator.pushReplacementNamed(context, routes[currentPageIndex].path);
+  @override
+  void initState() {
+    super.initState();
+    currentPageIndex = widget.pageIndex;
   }
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      onTap: (index) {
+        setState(() {
+          currentPageIndex = index;
+        });
+
+        Navigator.pushReplacementNamed(
+          context,
+          appRoutes[currentPageIndex].path,
+        );
+      },
       currentIndex: currentPageIndex,
       selectedItemColor: Colors.blue,
       unselectedItemColor: Colors.grey,
@@ -33,10 +42,6 @@ class CustomBottomNavigationState extends State<CustomBottomNavigation> {
         fontSize: 14,
         fontWeight: FontWeight.w600,
       ),
-      onTap: (index) {
-        updateCurrentPageIndex(index);
-        navigateToPage(appRoutes);
-      },
       items: [
         ...[
           for (final AppRoute route in appRoutes)

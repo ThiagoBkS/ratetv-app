@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/widgets/category/category_item.dart';
 
 class CategoryModel {
   final String name;
@@ -59,10 +58,10 @@ class CategorySection extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               spacing: 4,
-              children: [
-                for (CategoryModel category in items)
-                  CategoryItem(category: category),
-              ],
+              // children: [
+              //   for (CategoryModel category in items)
+              //     CategoryItem(category: category),
+              // ],
             ),
           ),
         ],

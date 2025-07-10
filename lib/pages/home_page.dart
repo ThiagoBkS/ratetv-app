@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_a/models/section_model.dart';
+import 'package:project_a/widgets/bottom_navigation.dart';
 import 'package:project_a/widgets/card_list/horizontal_card_list.dart';
 import 'package:project_a/widgets/category/category_section.dart';
-import 'package:project_a/widgets/custom_bottom_navigation.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,13 +10,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home"),
-        backgroundColor: Color.fromRGBO(21, 21, 29, 1),
-      ),
-      backgroundColor: Color.fromRGBO(21, 21, 29, 1),
-      body: Padding(padding: EdgeInsets.all(16), child: HomeBody()),
-      bottomNavigationBar: CustomBottomNavigation(),
+      body: SafeArea(child: HomeBody()),
+      bottomNavigationBar: BottomNavigation(pageIndex: 0),
     );
   }
 }
