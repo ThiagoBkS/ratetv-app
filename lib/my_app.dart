@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_a/pages/movie_page.dart';
 import 'package:project_a/routes/app_routes.dart';
 
 class MyApp extends StatelessWidget {
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color.fromRGBO(21, 21, 29, 1),
         ),
       ),
-      routes: {for (final route in appRoutes) route.path: route.builder},
+      home: MoviePage(),
+      // routes: {for (final route in appRoutes) route.path: route.builder},
     );
   }
 }
