@@ -14,14 +14,14 @@ class ProfileBackdrop extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: Image.network(
-                "https://placehold.co/100x150/EEE/31343C.jpg",
+                "https://4kwallpapers.com/images/walls/thumbs_3t/22855.jpg",
                 fit: BoxFit.cover,
               ),
             ),
             Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Color.fromRGBO(18, 18, 18, 1), Colors.transparent],
+                  colors: [Color.fromRGBO(21, 21, 29, 1), Colors.transparent],
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                 ),
