@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:project_a/widgets/bottom_navigation.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_backdrop.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_card.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_genre_chip.dart';
@@ -12,10 +11,7 @@ class MoviePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigation(pageIndex: 0),
-      body: SafeArea(child: MoviePageBody()),
-    );
+    return Scaffold(body: SafeArea(child: MoviePageBody()));
   }
 }
 

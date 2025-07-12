@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class StatColumn extends StatelessWidget {
+class StatItem extends StatelessWidget {
   final String label;
   final int value;
 
-  const StatColumn({super.key, required this.label, required this.value});
+  const StatItem({super.key, required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +14,15 @@ class StatColumn extends StatelessWidget {
       spacing: 4,
       children: [
         Text(
-          "$value",
+          label,
           style: GoogleFonts.inter(
-            fontSize: 18,
+            fontSize: 14,
             fontWeight: FontWeight.w600,
             color: Colors.white,
           ),
         ),
         Text(
-          label,
+          value.toString(),
           style: GoogleFonts.inter(
             fontSize: 12,
             fontWeight: FontWeight.w400,

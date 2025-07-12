@@ -9,7 +9,7 @@ class ProfileAvatar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(56)),
       child: CircleAvatar(
-        radius: 56,
+        radius: 48,
         backgroundColor: Colors.grey,
         backgroundImage: NetworkImage(avatarUrl),
       ),

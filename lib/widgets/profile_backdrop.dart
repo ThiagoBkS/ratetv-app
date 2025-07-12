@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProfileBackdrop extends StatelessWidget {
-  const ProfileBackdrop({super.key});
+  final String image;
+  const ProfileBackdrop({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +14,7 @@ class ProfileBackdrop extends StatelessWidget {
           children: [
             SizedBox(
               width: double.infinity,
-              child: Image.network(
-                "https://4kwallpapers.com/images/walls/thumbs_3t/22855.jpg",
-                fit: BoxFit.cover,
-              ),
+              child: Image.network(image, fit: BoxFit.cover),
             ),
             Container(
               decoration: BoxDecoration(
