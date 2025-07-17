@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_a/enums/spacing.dart';
 import 'package:project_a/widgets/movie_action_buttons.dart';
 
 class MovieActionButtons extends StatelessWidget {
@@ -9,9 +10,9 @@ class MovieActionButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(4),
+      padding: EdgeInsets.all(Spacing.small),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(Spacing.normal),
         color: Color.fromRGBO(56, 63, 68, 0.2),
         border: BoxBorder.all(color: Color.fromRGBO(56, 63, 68, 1)),
       ),
