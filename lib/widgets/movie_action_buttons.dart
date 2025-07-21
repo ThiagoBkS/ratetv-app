@@ -1,50 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/enums/font_size.dart';
-import 'package:project_a/enums/spacing.dart';
+import 'package:project_a/utils/spacing.dart';
+import 'package:project_a/widgets/movie_action_button.dart';
 
-class MovieActionButton extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback? onTap;
-  final Color? iconColor;
+class MovieActionButtons extends StatelessWidget {
+  final List<MovieActionButton> buttons;
 
-  const MovieActionButton({
-    super.key,
-    required this.icon,
-    required this.label,
-    this.onTap,
-    this.iconColor = Colors.white,
-  });
+  const MovieActionButtons({super.key, required this.buttons});
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        if (onTap != null) onTap!();
-      },
-      onLongPress: () {
-        if (onTap != null) onTap!();
-      },
-      style: TextButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(Spacing.medium)),
-        ),
+    return Container(
+      padding: EdgeInsets.all(Spacing.small),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(Spacing.normal),
+        color: Color.fromRGBO(56, 63, 68, 0.2),
+        border: BoxBorder.all(color: Color.fromRGBO(56, 63, 68, 1)),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: Spacing.small,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Icon(icon, color: iconColor, size: 22),
-          Text(
-            label,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(
-              fontSize: FontSize.small,
-              color: Colors.white,
-            ),
-          ),
+          for (MovieActionButton button in buttons) Expanded(child: button),
         ],
       ),
     );

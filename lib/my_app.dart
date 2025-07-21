@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         // textTheme: GoogleFonts.montserratTextTheme(),
       ),
 
-      home: MoviePage(),
+      home: MoviePage(movieId: 505),
     );
   }
 }

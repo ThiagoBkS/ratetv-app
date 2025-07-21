@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/enums/font_size.dart';
-import 'package:project_a/enums/spacing.dart';
+import 'package:project_a/utils/font_size.dart';
+import 'package:project_a/utils/spacing.dart';
 
 class MovieStreamingChip extends StatelessWidget {
   final String image;
@@ -20,11 +20,12 @@ class MovieStreamingChip extends StatelessWidget {
       borderRadius: BorderRadius.circular(Spacing.extraSmall),
       child: Container(
         padding: EdgeInsets.all(Spacing.small),
+        width: 96,
         child: Column(
           spacing: Spacing.extraSmall,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: 48,
               width: 48,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(Spacing.small),
@@ -37,6 +38,8 @@ class MovieStreamingChip extends StatelessWidget {
                 fontSize: FontSize.small,
                 fontWeight: FontWeight.w500,
               ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),

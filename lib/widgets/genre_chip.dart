@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:project_a/enums/font_size.dart';
-import 'package:project_a/enums/spacing.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:project_a/utils/font_size.dart';
+import 'package:project_a/utils/spacing.dart';
 
-class MovieGenreChip extends StatelessWidget {
+class GenreChip extends StatelessWidget {
+  final int id;
   final String label;
-  const MovieGenreChip({super.key, required this.label});
+
+  const GenreChip({super.key, required this.id, required this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,10 @@ class MovieGenreChip extends StatelessWidget {
           border: BoxBorder.all(color: Color.fromRGBO(60, 60, 60, 1), width: 1),
           borderRadius: BorderRadius.circular(Spacing.medium),
         ),
-        child: Text(label, style: TextStyle(fontSize: FontSize.normal)),
+        child: Text(
+          label,
+          style: GoogleFonts.montserrat(fontSize: FontSize.normal),
+        ),
       ),
     );
   }
