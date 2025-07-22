@@ -66,7 +66,7 @@ class TMDBMovie {
       genres: [],
       id: json["id"],
       imdbId: json["imdb_id"],
-      overview: json["overview"],
+      overview: json["overview"] ?? "Este titulo não possui uma sinopse",
       posterPath: json["poster_path"],
       releaseDate: json["release_date"] != null
           ? DateTime.parse(json["release_date"])

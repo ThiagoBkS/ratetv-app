@@ -51,7 +51,6 @@ class MovieCastCard extends StatelessWidget {
                         color: Color.fromRGBO(56, 63, 68, 1),
                       ),
                     );
-                    ;
                   },
                 ),
               ),

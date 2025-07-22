@@ -17,7 +17,7 @@ class MovieBackdrop extends StatelessWidget {
             child: Opacity(
               opacity: 0.5,
               child: Image.network(
-                imageUrl,
+                "https://image.tmdb.org/t/p/w500/$imageUrl",
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Container(

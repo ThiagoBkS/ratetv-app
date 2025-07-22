@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_a/pages/movie_page.dart';
+import 'package:project_a/pages/search_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         // textTheme: GoogleFonts.montserratTextTheme(),
       ),
 
-      home: MoviePage(movieId: 505),
+      home: SearchPage(),
     );
   }
 }

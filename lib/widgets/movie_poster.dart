@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:project_a/models/movie.dart';
 import 'package:project_a/utils/spacing.dart';
 
@@ -19,10 +20,22 @@ class MoviePoster extends StatelessWidget {
           child: Stack(
             children: [
               Image.network(
-                data.movie.posterPath,
+                "https://image.tmdb.org/t/p/w500/${data.movie.posterPath}",
                 height: double.infinity,
                 width: double.infinity,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    color: Color.fromRGBO(56, 63, 68, 1),
+                    child: Icon(
+                      LucideIcons.imageOff300,
+                      size: 48,
+                      color: Color.fromRGBO(90, 90, 90, 1),
+                    ),
+                  );
+                },
               ),
               Positioned(
                 top: -1,

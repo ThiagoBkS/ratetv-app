@@ -26,7 +26,7 @@ class MoviePageState extends State<MoviePage> {
 
   void fetchMovie() async {
     try {
-      movie = await TmdbService.getAllMovieData(299534);
+      movie = await TmdbService.getAllMovieData(widget.movieId);
       setState(() {});
     } catch (err) {
       if (err is NotFoundMovie) {
