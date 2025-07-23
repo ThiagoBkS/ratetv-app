@@ -1,7 +1,7 @@
 class TMDBSearchResult {
   final bool isAdult;
   final String backdropPath;
-  // final List<int> genreIds;
+  final List<dynamic> genreIds;
   final int id;
   final String overview;
   final String posterPath;
@@ -13,7 +13,7 @@ class TMDBSearchResult {
   TMDBSearchResult({
     required this.isAdult,
     required this.backdropPath,
-    // required this.genreIds,
+    required this.genreIds,
     required this.id,
     required this.overview,
     required this.posterPath,
@@ -27,7 +27,7 @@ class TMDBSearchResult {
     return TMDBSearchResult(
       isAdult: json["adult"] ?? false,
       backdropPath: json["backdrop_path"] ?? "",
-      // genreIds: json["genre_ids"] ?? "",
+      genreIds: json["genre_ids"] ?? "",
       id: json["id"],
       overview: json["overview"] ?? "",
       posterPath: json["poster_path"] ?? "",

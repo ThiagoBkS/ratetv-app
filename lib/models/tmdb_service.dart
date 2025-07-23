@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:project_a/exceptions/not_found_movie.dart';
 import 'package:project_a/models/cast.dart';
 import 'package:project_a/models/movie.dart';
@@ -9,6 +10,7 @@ import 'package:project_a/models/tmdb_search_result.dart';
 
 class TmdbService {
   static final String baseUrl = "https://api.themoviedb.org/3";
+  static int requests = 0;
 
   static Future<TMDBMovie> getMovieById(
     http.Client client,
@@ -18,6 +20,9 @@ class TmdbService {
     final response = await client.get(
       Uri.parse('$baseUrl/movie/$movieId?api_key=$apiKey&language=pt-BR'),
     );
+
+    requests++;
+    print(requests);
 
     final data = json.decode(response.body);
     return TMDBMovie.fromJson(data);
@@ -32,6 +37,9 @@ class TmdbService {
       Uri.parse('$baseUrl/movie/$movieId/credits?api_key=$apiKey'),
     );
 
+    requests++;
+    print(requests);
+
     final data = json.decode(response.body);
     final List<dynamic> castJson = data["cast"];
     return castJson.map((json) => TMDBCast.fromJson(json)).toList();
@@ -41,6 +49,8 @@ class TmdbService {
     final String apiKey = "9d005c81618cf4d45a9f6977b2d85774";
     var client = http.Client();
 
+    requests++;
+    print(requests);
     try {
       final movie = await getMovieById(client, movieId, apiKey);
       final cast = await getMovieCastList(client, movieId, apiKey);
@@ -53,8 +63,10 @@ class TmdbService {
   }
 
   static Future<List<TMDBSearchResult>> getMovieByTitle(String title) async {
-    final String apiKey = "";
+    final String apiKey = "9d005c81618cf4d45a9f6977b2d85774";
 
+    requests++;
+    print(requests);
     try {
       final response = await http.get(
         Uri.parse(
@@ -66,6 +78,7 @@ class TmdbService {
       final List<dynamic> movies = data["results"];
       return movies.map((json) => TMDBSearchResult.fromJson(json)).toList();
     } catch (err) {
+      print(err);
       throw NotFoundMovie("Movie with title: $title not found!");
     }
   }

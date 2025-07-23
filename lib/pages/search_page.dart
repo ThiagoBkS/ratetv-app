@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:project_a/models/movie.dart';
 import 'package:project_a/models/tmdb_search_result.dart';
 import 'package:project_a/models/tmdb_service.dart';
 import 'package:project_a/pages/movie_page.dart';
-import 'package:project_a/widgets/movie_poster.dart';
+import 'package:project_a/widgets/movie_details_sheet/movie_details_sheet.dart';
 import 'package:project_a/widgets/search_bar.dart';
+
+void showMovieDetailsSheet(BuildContext context, TMDBSearchResult movie) {
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: Color.fromRGBO(24, 28, 31, 1),
+    builder: (context) => MovieDetailsSheet(movie: movie),
+  );
+}
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -19,6 +26,17 @@ class SearchPage extends StatefulWidget {
 class SearchPageState extends State<SearchPage> {
   Future<List<TMDBSearchResult>>? results;
   String searchValue = "Pesquisa: ";
+  FocusNode searchFocusNode = FocusNode();
+
+  void openMovieDetailsSheet(TMDBSearchResult movie) {
+    showMovieDetailsSheet(context, movie);
+  }
+
+  @override
+  void dispose() {
+    searchFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -40,7 +58,11 @@ class SearchPageState extends State<SearchPage> {
       body: SafeArea(
         child: Column(
           children: [
-            CustomSearchBar(onSearch: searchData, debounceMiliseconds: 500),
+            CustomSearchBar(
+              onSearch: searchData,
+              focusNode: searchFocusNode,
+              debounceMiliseconds: 500,
+            ),
             Expanded(
               child: FutureBuilder<List<TMDBSearchResult>>(
                 future: results,
@@ -61,46 +83,35 @@ class SearchPageState extends State<SearchPage> {
                       childAspectRatio: 1 / 1.5,
                       children: [
                         for (var result in data)
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      MoviePage(movieId: result.id),
-                                ),
-                              );
-                            },
-                            borderRadius: BorderRadius.circular(8),
-                            child: ClipRRect(
+                          Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        MoviePage(movieId: result.id),
+                                  ),
+                                );
+                              },
+                              onLongPress: () {
+                                openMovieDetailsSheet(result);
+                                searchFocusNode.unfocus();
+                              },
                               borderRadius: BorderRadius.circular(8),
-                              child: Container(
-                                color: Color.fromRGBO(56, 63, 68, 0.5),
-                                child: Stack(
-                                  children: [
-                                    Image.network(
-                                      height: double.infinity,
-                                      width: double.infinity,
+                              child: Ink(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
                                       "https://image.tmdb.org/t/p/w200/${result.posterPath}.jpg",
-                                      fit: BoxFit.cover,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                            return Center(
-                                              child: Icon(
-                                                LucideIcons.imageOff300,
-                                                size: 48,
-                                                color: Color.fromRGBO(
-                                                  56,
-                                                  63,
-                                                  68,
-                                                  1,
-                                                ),
-                                              ),
-                                            );
-                                          },
                                     ),
-                                  ],
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
+                                width: double.infinity,
+                                height: double.infinity,
                               ),
                             ),
                           ),

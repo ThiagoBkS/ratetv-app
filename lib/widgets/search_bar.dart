@@ -3,12 +3,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatefulWidget {
+  final FocusNode focusNode;
+
   final Function(String) onSearch;
   final int debounceMiliseconds;
 
   const CustomSearchBar({
     super.key,
     required this.onSearch,
+    required this.focusNode,
     this.debounceMiliseconds = 500,
   });
 
@@ -46,6 +49,7 @@ class CustomSearchBarState extends State<CustomSearchBar> {
           width: double.infinity,
           height: 52,
           child: SearchBar(
+            focusNode: FocusNode(),
             onChanged: (value) {
               _onChanged(value);
             },
