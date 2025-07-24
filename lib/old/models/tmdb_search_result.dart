@@ -35,7 +35,7 @@ class TMDBSearchResult {
           ? DateTime.parse(json["release_date"])
           : DateTime(0),
       title: json["title"] ?? "",
-      voteAverage: double.parse(json["vote_average"].toString()) ?? 0.0,
+      voteAverage: double.parse(json["vote_average"].toString()),
       voteCount: json["vote_count"] ?? 0,
     );
   }

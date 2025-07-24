@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/utils/font_size.dart';
-import 'package:project_a/utils/spacing.dart';
+import 'package:project_a/old/utils/font_size.dart';
+import 'package:project_a/old/utils/spacing.dart';
 
 class MovieActionButton extends StatelessWidget {
   final IconData icon;

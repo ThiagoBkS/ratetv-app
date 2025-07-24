@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:project_a/models/tmdb_movie.dart';
-import 'package:project_a/models/tmdb_search_result.dart';
-import 'package:project_a/widgets/movie_details_sheet/movie_details.dart';
-import 'package:project_a/widgets/movie_details_sheet/movie_details_button.dart';
+import 'package:project_a/old/models/tmdb_search_result.dart';
+import 'package:project_a/old/widgets/movie_details_sheet/movie_details.dart';
+import 'package:project_a/old/widgets/movie_details_sheet/movie_details_button.dart';
 
 void showMovieDetailsSheet(BuildContext context, TMDBSearchResult movie) {
   showModalBottomSheet(

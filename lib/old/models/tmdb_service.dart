@@ -1,12 +1,11 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-import 'package:project_a/exceptions/not_found_movie.dart';
-import 'package:project_a/models/cast.dart';
-import 'package:project_a/models/movie.dart';
-import 'package:project_a/models/tmdb_movie.dart';
+import 'package:project_a/old/exceptions/not_found_movie.dart';
+import 'package:project_a/old/models/cast.dart';
+import 'package:project_a/old/models/movie.dart';
+import 'package:project_a/old/models/tmdb_movie.dart';
 import 'package:http/http.dart' as http;
-import 'package:project_a/models/tmdb_search_result.dart';
+import 'package:project_a/old/models/tmdb_search_result.dart';
 
 class TmdbService {
   static final String baseUrl = "https://api.themoviedb.org/3";

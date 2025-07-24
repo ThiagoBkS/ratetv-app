@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:project_a/models/genre.dart';
-import 'package:project_a/models/tmdb_movie.dart';
-import 'package:project_a/models/tmdb_search_result.dart';
-import 'package:project_a/widgets/movie_details_sheet/genre_chip.dart';
-import 'package:project_a/widgets/movie_details_sheet/movie_details_poster.dart';
+import 'package:project_a/models/basic_movie.dart';
+import 'package:project_a/old/widgets/movie_details_sheet/movie_details_poster.dart';
 
 class MovieDetails extends StatelessWidget {
-  final TMDBSearchResult details;
+  final BasicMovie details;
   const MovieDetails({super.key, required this.details});
 
-  Widget genreIdToWidget(int genreId) {
-    String label = Genre(id: genreId).name;
-    return GenreChip(label: label);
-  }
+  // Widget genreIdToWidget(int genreId) {
+  //   String label = Genre(id: genreId).name;
+  //   return GenreChip(label: label);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +26,7 @@ class MovieDetails extends StatelessWidget {
           children: [
             ConstrainedBox(
               constraints: BoxConstraints(maxHeight: 150),
-              child: MovieDetailsPoster(
-                posterImage:
-                    "https://image.tmdb.org/t/p/w500/" + details.posterPath,
-              ),
+              child: MovieDetailsPoster(posterImage: details.posterUrl!),
             ),
             Expanded(
               flex: 3,
@@ -52,17 +46,21 @@ class MovieDetails extends StatelessWidget {
                   Row(
                     spacing: 4,
                     children: [
-                      Text(
-                        TMDBMovie.formattedDate(details.releaseDate.toString()),
-                        style: GoogleFonts.montserrat(fontSize: 12),
-                      ),
+                      // Text(
+                      //   TmdbService.formattedDate(
+                      //     details.releaseDate.toString(),
+                      //   ),
+                      //   style: GoogleFonts.montserrat(fontSize: 12),
+                      // ),
                     ],
                   ),
-                  Wrap(
-                    spacing: 4,
-                    runSpacing: 4,
-                    children: [Text(Genre.getNamesByIds(details.genreIds))],
-                  ),
+                  // Wrap(
+                  //   spacing: 4,
+                  //   runSpacing: 4,
+                  //   children: List.generate(details.genreIds!.length, (index) {
+                  //     return genreIdToWidget(details.genreIds![index]);
+                  //   }),
+                  // ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     spacing: 4,
@@ -77,7 +75,7 @@ class MovieDetails extends StatelessWidget {
                         spacing: 4,
                         children: [
                           Text(
-                            "${details.voteAverage}/10",
+                            "${details.voteAverage.toStringAsFixed(1)}/10",
                             style: GoogleFonts.montserrat(fontSize: 12),
                           ),
                           Text(

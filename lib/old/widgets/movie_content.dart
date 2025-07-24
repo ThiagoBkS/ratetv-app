@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/movie.dart';
-import 'package:project_a/models/tmdb_movie.dart';
-import 'package:project_a/utils/spacing.dart';
-import 'package:project_a/widgets/info_row.dart';
-import 'package:project_a/widgets/movie_action_button.dart';
-import 'package:project_a/widgets/movie_action_buttons.dart';
-import 'package:project_a/widgets/movie_avaliable_streamings.dart';
-import 'package:project_a/widgets/movie_cast_section.dart';
-import 'package:project_a/widgets/movie_header.dart';
+import 'package:project_a/old/models/movie.dart';
+import 'package:project_a/old/models/tmdb_movie.dart';
+import 'package:project_a/old/utils/spacing.dart';
+import 'package:project_a/old/widgets/info_row.dart';
+import 'package:project_a/old/widgets/movie_action_button.dart';
+import 'package:project_a/old/widgets/movie_action_buttons.dart';
+import 'package:project_a/old/widgets/movie_avaliable_streamings.dart';
+import 'package:project_a/old/widgets/movie_cast_section.dart';
+import 'package:project_a/old/widgets/movie_header.dart';
 
 class MovieContent extends StatelessWidget {
   final CompleteMovie data;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_a/exceptions/error_message.dart';
-import 'package:project_a/exceptions/not_found_movie.dart';
+import 'package:project_a/old/exceptions/error_message.dart';
+import 'package:project_a/old/exceptions/not_found_movie.dart';
 import 'package:project_a/old/models/movie.dart';
 import 'package:project_a/old/models/tmdb_service.dart';
 import 'package:project_a/old/widgets/movie_backdrop.dart';

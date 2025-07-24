@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/movie.dart';
-import 'package:project_a/models/tmdb_genre.dart';
-import 'package:project_a/models/tmdb_movie.dart';
-import 'package:project_a/utils/font_size.dart';
-import 'package:project_a/utils/spacing.dart';
-import 'package:project_a/widgets/genre_chip.dart';
+import 'package:project_a/old/models/movie.dart';
+import 'package:project_a/old/models/tmdb_genre.dart';
+import 'package:project_a/old/models/tmdb_movie.dart';
+import 'package:project_a/old/utils/font_size.dart';
+import 'package:project_a/old/utils/spacing.dart';
+import 'package:project_a/old/widgets/genre_chip.dart';
 
 class MovieSectionDetails extends StatelessWidget {
   final CompleteMovie data;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/cast.dart';
-import 'package:project_a/utils/font_size.dart';
-import 'package:project_a/utils/spacing.dart';
-import 'package:project_a/widgets/movie_cast_card.dart';
+import 'package:project_a/old/models/cast.dart';
+import 'package:project_a/old/utils/font_size.dart';
+import 'package:project_a/old/utils/spacing.dart';
+import 'package:project_a/old/widgets/movie_cast_card.dart';
 
 class MovieCastSection extends StatelessWidget {
   MovieCastSection({super.key});

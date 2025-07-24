@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Color.fromRGBO(24, 28, 31, 1),
-        // textTheme: GoogleFonts.montserratTextTheme(),
       ),
 
       home: SearchPage(),

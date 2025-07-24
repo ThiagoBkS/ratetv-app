@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/movie.dart';
-import 'package:project_a/utils/font_size.dart';
-import 'package:project_a/utils/spacing.dart';
-import 'package:project_a/widgets/movie_poster.dart';
-import 'package:project_a/widgets/movie_section_details.dart';
+import 'package:project_a/old/models/movie.dart';
+import 'package:project_a/old/utils/font_size.dart';
+import 'package:project_a/old/utils/spacing.dart';
+import 'package:project_a/old/widgets/movie_poster.dart';
+import 'package:project_a/old/widgets/movie_section_details.dart';
 
 class MovieHeader extends StatelessWidget {
   final CompleteMovie data;

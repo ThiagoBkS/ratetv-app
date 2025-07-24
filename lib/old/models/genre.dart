@@ -33,7 +33,7 @@ class Genre {
     return match["name"] as String;
   }
 
-  static String getNamesByIds(List<int> genreIds) {
+  static String getNamesByIds(List<dynamic> genreIds) {
     return avaliableGenres
         .where((genre) => genreIds.contains(genre['id']))
         .map((genre) => genre["name"] as String)

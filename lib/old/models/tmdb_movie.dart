@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:project_a/models/tmdb_genre.dart';
+import 'package:project_a/old/models/tmdb_genre.dart';
 
 class TMDBMovie {
   final bool adult;
