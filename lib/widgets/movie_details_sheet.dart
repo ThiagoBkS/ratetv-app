@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:project_a/models/basic_movie.dart';
-import 'package:project_a/old/widgets/movie_details_sheet/movie_details.dart';
 import 'package:project_a/widgets/details_sheet_action_button.dart';
+import 'package:project_a/widgets/movie_details.dart';
 
 void showMovieDetailsSheet(BuildContext context, BasicMovie details) {
   showModalBottomSheet(
@@ -54,7 +54,7 @@ class MovieDetailsSheet extends StatelessWidget {
                   Column(
                     spacing: 8,
                     children: [
-                      // MovieDetails(details: details),
+                      MovieDetails(details: details),
                       Column(children: List.from(actionButtons)),
                     ],
                   ),

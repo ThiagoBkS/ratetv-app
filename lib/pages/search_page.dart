@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:project_a/models/basic_movie.dart';
-import 'package:project_a/old/widgets/search_bar.dart';
+import 'package:project_a/models/tmdb_service.dart';
+import 'package:project_a/widgets/custom_search_bar.dart';
 import 'package:project_a/widgets/movie_card.dart';
+import 'package:project_a/widgets/movie_details_sheet.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+  final String? searchValue;
+  const SearchPage({super.key, this.searchValue});
 
   @override
   State<StatefulWidget> createState() {
@@ -18,7 +21,7 @@ class SearchPageState extends State<SearchPage> {
   FocusNode searchFocusNode = FocusNode();
 
   void openMovieDetailsSheet(BasicMovie movie) {
-    // showMovieDetailsSheet(context, movie);
+    showMovieDetailsSheet(context, movie);
   }
 
   @override
@@ -30,12 +33,14 @@ class SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
+
+    if (searchValue.isNotEmpty) searchData(searchValue);
   }
 
   void searchData(String value) {
     if (value.length <= 3) return;
 
-    // results = TmdbService.getMovieByTitle(value);
+    results = TmdbService.getMovieByTitle(value);
     setState(() {
       searchValue = value;
     });
@@ -43,11 +48,6 @@ class SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Inicia a busca apenas uma vez
-    if (results == null) {
-      searchData("superman");
-    }
-
     return Scaffold(
       body: SafeArea(
         child: Column(

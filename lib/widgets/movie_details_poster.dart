@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:project_a/old/utils/utils.dart';
+import 'package:project_a/utils/utils.dart';
 
 class MovieDetailsPoster extends StatelessWidget {
   final String posterImage;

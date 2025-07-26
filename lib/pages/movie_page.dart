@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:project_a/exceptions/error_message.dart';
 import 'package:project_a/exceptions/not_found_movie.dart';
-import 'package:project_a/old/models/movie.dart';
-import 'package:project_a/old/models/tmdb_service.dart';
-import 'package:project_a/old/widgets/movie_backdrop.dart';
-import 'package:project_a/old/widgets/movie_content.dart';
+import 'package:project_a/models/movie.dart';
+import 'package:project_a/models/tmdb_service.dart';
+import 'package:project_a/widgets/movie_backdrop.dart';
+import 'package:project_a/widgets/movie_content.dart';
 
 class MoviePage extends StatefulWidget {
   final int movieId;
-  const MoviePage({super.key, required this.movieId});
+  final VoidCallback onBackToMain;
+
+  const MoviePage({
+    super.key,
+    required this.movieId,
+    required this.onBackToMain,
+  });
 
   @override
   State<StatefulWidget> createState() => MoviePageState();
@@ -18,15 +24,25 @@ class MoviePageState extends State<MoviePage> {
   CompleteMovie? movie;
   ErrorMessage? errorMessage;
 
+  late int movieId;
+  late VoidCallback onBackToMain;
+  final tmdbService = TmdbService();
+  final String imageBaseUrl = "https://image.tmdb.org/t/p/w342";
+
   @override
   void initState() {
     super.initState();
+
+    movieId = widget.movieId;
+    onBackToMain = widget.onBackToMain;
+
     fetchMovie();
   }
 
   void fetchMovie() async {
     try {
       movie = await TmdbService.getAllMovieData(widget.movieId);
+
       setState(() {});
     } catch (err) {
       if (err is NotFoundMovie) {
@@ -46,6 +62,10 @@ class MoviePageState extends State<MoviePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Filme"),
+        leading: BackButton(onPressed: onBackToMain),
+      ),
       body: SafeArea(
         child: errorMessage != null
             ? Center(
@@ -63,6 +83,7 @@ class MoviePageState extends State<MoviePage> {
                       ),
                       SizedBox(height: 8),
                       Text(errorMessage!.message),
+                      Text("opa"),
                     ],
                   ),
                 ),

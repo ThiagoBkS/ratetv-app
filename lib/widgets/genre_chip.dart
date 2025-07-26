@@ -17,7 +17,10 @@ class GenreChip extends StatelessWidget {
           border: BoxBorder.all(color: Color.fromRGBO(60, 60, 60, 1), width: 1),
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Text(label, style: GoogleFonts.montserrat(fontSize: 12)),
+        child: Text(
+          label,
+          style: GoogleFonts.montserrat(fontSize: 12, color: Colors.white),
+        ),
       ),
     );
   }

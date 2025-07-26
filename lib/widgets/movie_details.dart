@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:project_a/models/basic_movie.dart';
-import 'package:project_a/old/widgets/movie_details_sheet/movie_details_poster.dart';
+import 'package:project_a/services/tmdb_service.dart';
+import 'package:project_a/widgets/genre_chip.dart';
+import 'package:project_a/widgets/movie_details_poster.dart';
 
 class MovieDetails extends StatelessWidget {
   final BasicMovie details;
   const MovieDetails({super.key, required this.details});
 
-  // Widget genreIdToWidget(int genreId) {
-  //   String label = Genre(id: genreId).name;
-  //   return GenreChip(label: label);
-  // }
+  Widget genreIdToWidget(int genreId) {
+    // String? genre =
+    //     availableGenres.firstWhere((genre) => genre.id == genreId).toString() ??
+    //     "";
+
+    return GenreChip(label: "TESTE");
+  }
 
   @override
   Widget build(BuildContext context) {
-    final decimalPattern = NumberFormat.decimalPattern("pt_BR");
+    // final decimalPattern = NumberFormat.decimalPattern("pt_BR");
 
     return Column(
       spacing: 8,
@@ -26,7 +30,10 @@ class MovieDetails extends StatelessWidget {
           children: [
             ConstrainedBox(
               constraints: BoxConstraints(maxHeight: 150),
-              child: MovieDetailsPoster(posterImage: details.posterUrl!),
+              child: MovieDetailsPoster(
+                posterImage:
+                    "https://image.tmdb.org/t/p/w500/${details.posterUrl}",
+              ),
             ),
             Expanded(
               flex: 3,
@@ -46,21 +53,24 @@ class MovieDetails extends StatelessWidget {
                   Row(
                     spacing: 4,
                     children: [
-                      // Text(
-                      //   TmdbService.formattedDate(
-                      //     details.releaseDate.toString(),
-                      //   ),
-                      //   style: GoogleFonts.montserrat(fontSize: 12),
-                      // ),
+                      Text(
+                        TmdbService.formattedDate(
+                          details.releaseDate.toString(),
+                        ),
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          color: Colors.white,
+                        ),
+                      ),
                     ],
                   ),
-                  // Wrap(
-                  //   spacing: 4,
-                  //   runSpacing: 4,
-                  //   children: List.generate(details.genreIds!.length, (index) {
-                  //     return genreIdToWidget(details.genreIds![index]);
-                  //   }),
-                  // ),
+                  Wrap(
+                    spacing: 4,
+                    runSpacing: 4,
+                    children: List.generate(details.genreIds!.length, (index) {
+                      return genreIdToWidget(details.genreIds![index]);
+                    }),
+                  ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     spacing: 4,
@@ -75,12 +85,18 @@ class MovieDetails extends StatelessWidget {
                         spacing: 4,
                         children: [
                           Text(
-                            "${details.voteAverage.toStringAsFixed(1)}/10",
-                            style: GoogleFonts.montserrat(fontSize: 12),
+                            "${details.voteAverage}/10",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 12,
+                              color: Colors.white,
+                            ),
                           ),
                           Text(
-                            "(${decimalPattern.format(details.voteCount)})",
-                            style: GoogleFonts.montserrat(fontSize: 12),
+                            "(${details.voteCount})",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 12,
+                              color: Colors.white,
+                            ),
                           ),
                         ],
                       ),

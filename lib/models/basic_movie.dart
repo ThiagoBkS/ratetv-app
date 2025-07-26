@@ -31,7 +31,7 @@ class BasicMovie {
       id: BasicMovieParser.parseId(json["id"]),
       title: BasicMovieParser.parseTitle(json["title"]),
       overview: BasicMovieParser.parseOverview(json["overview"]),
-      posterUrl: "https://image.tmdb.org/t/p/w500${json["poster_path"]}",
+      posterUrl: json["poster_path"],
       // posterUrl: TmdbService.getFullImageSrc(
       //   BasicMovieParser.parseImage(json["poster_path"]),
       //   "w500",

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:project_a/old/utils/utils.dart';
+import 'package:project_a/utils/utils.dart';
 
 class ImageErrorWidget extends StatelessWidget {
   final String? label;
