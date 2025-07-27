@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:project_a/models/basic_movie.dart';
-import 'package:project_a/widgets/details_sheet_action_button.dart';
-import 'package:project_a/widgets/movie_details.dart';
+import 'package:project_a/models/movie_preview.dart';
+import 'package:project_a/widgets/movie_card_details.dart';
+import 'package:project_a/widgets/movie_card/movie_details_sheet/details_sheet_action_button.dart';
 
-void showMovieDetailsSheet(BuildContext context, BasicMovie details) {
+void showMovieDetailsSheet(BuildContext context, MoviePreview details) {
   showModalBottomSheet(
     context: context,
     backgroundColor: Color.fromRGBO(24, 28, 31, 1),
@@ -13,7 +13,7 @@ void showMovieDetailsSheet(BuildContext context, BasicMovie details) {
 }
 
 class MovieDetailsSheet extends StatelessWidget {
-  final BasicMovie details;
+  final MoviePreview details;
   MovieDetailsSheet({super.key, required this.details});
 
   final List<SheetActionButton> actionButtons = [
@@ -43,7 +43,7 @@ class MovieDetailsSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.only(top: 16, left: 16, right: 16),
+        padding: EdgeInsets.all(16),
         child: LayoutBuilder(
           builder: (context, constraints) {
             return SizedBox(
@@ -54,7 +54,7 @@ class MovieDetailsSheet extends StatelessWidget {
                   Column(
                     spacing: 8,
                     children: [
-                      MovieDetails(details: details),
+                      MovieCardDetails(details: details),
                       Column(children: List.from(actionButtons)),
                     ],
                   ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:project_a/models/basic_movie.dart';
-import 'package:project_a/models/tmdb_service.dart';
+import 'package:project_a/models/movie_preview.dart';
+import 'package:project_a/pages/movie_page.dart';
+import 'package:project_a/service/tmdb_service.dart';
 import 'package:project_a/widgets/custom_search_bar.dart';
-import 'package:project_a/widgets/movie_card.dart';
-import 'package:project_a/widgets/movie_details_sheet.dart';
+import 'package:project_a/widgets/movie_card/movie_card.dart';
 
 class SearchPage extends StatefulWidget {
   final String? searchValue;
@@ -16,12 +16,12 @@ class SearchPage extends StatefulWidget {
 }
 
 class SearchPageState extends State<SearchPage> {
-  Future<List<BasicMovie>>? results;
-  String searchValue = "Pesquisa: ";
+  Future<List<MoviePreview>>? results;
   FocusNode searchFocusNode = FocusNode();
 
-  void openMovieDetailsSheet(BasicMovie movie) {
-    showMovieDetailsSheet(context, movie);
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -30,20 +30,11 @@ class SearchPageState extends State<SearchPage> {
     super.dispose();
   }
 
-  @override
-  void initState() {
-    super.initState();
-
-    if (searchValue.isNotEmpty) searchData(searchValue);
-  }
-
   void searchData(String value) {
     if (value.length <= 3) return;
 
-    results = TmdbService.getMovieByTitle(value);
-    setState(() {
-      searchValue = value;
-    });
+    results = TmdbService.getMoviePreviewListByTitle(value);
+    setState(() {});
   }
 
   @override
@@ -53,12 +44,15 @@ class SearchPageState extends State<SearchPage> {
         child: Column(
           children: [
             CustomSearchBar(
-              onSearch: searchData,
+              onSearch: (value) {
+                searchData(value);
+              },
               focusNode: searchFocusNode,
-              debounceMiliseconds: 500,
+              debounceMiliseconds: 1000,
             ),
+
             Expanded(
-              child: FutureBuilder<List<BasicMovie>>(
+              child: FutureBuilder<List<MoviePreview>>(
                 future: results,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -79,8 +73,21 @@ class SearchPageState extends State<SearchPage> {
                     children: List.generate(movies.length, (index) {
                       return MovieCard(
                         details: movies[index],
-                        onTap: () {},
-                        onPress: () {},
+                        enableBookmarked: true,
+                        enableDetailsSheet: true,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MoviePage(
+                                movieId: movies[index].id,
+                                onBackToMain: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ),
+                          );
+                        },
                       );
                     }),
                   );

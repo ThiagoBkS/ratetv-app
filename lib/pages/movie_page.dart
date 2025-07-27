@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project_a/exceptions/error_message.dart';
-import 'package:project_a/exceptions/not_found_movie.dart';
 import 'package:project_a/models/movie.dart';
-import 'package:project_a/models/tmdb_service.dart';
-import 'package:project_a/widgets/movie_backdrop.dart';
-import 'package:project_a/widgets/movie_content.dart';
+import 'package:project_a/models/movie_cast.dart';
+import 'package:project_a/service/tmdb_service.dart';
+import 'package:project_a/widgets/movie_page_widgets/movie_backdrop.dart';
+import 'package:project_a/widgets/movie_page_widgets/movie_content.dart';
 
 class MoviePage extends StatefulWidget {
   final int movieId;
@@ -21,13 +21,12 @@ class MoviePage extends StatefulWidget {
 }
 
 class MoviePageState extends State<MoviePage> {
-  CompleteMovie? movie;
+  Movie? movie;
+  List<MovieCast>? cast;
   ErrorMessage? errorMessage;
 
   late int movieId;
   late VoidCallback onBackToMain;
-  final tmdbService = TmdbService();
-  final String imageBaseUrl = "https://image.tmdb.org/t/p/w342";
 
   @override
   void initState() {
@@ -36,26 +35,19 @@ class MoviePageState extends State<MoviePage> {
     movieId = widget.movieId;
     onBackToMain = widget.onBackToMain;
 
-    fetchMovie();
+    fetchData();
   }
 
-  void fetchMovie() async {
+  void fetchData() async {
     try {
-      movie = await TmdbService.getAllMovieData(widget.movieId);
-
+      movie = await TmdbService.getMovieById(widget.movieId);
+      cast = await TmdbService.getMovieCastList(widget.movieId);
       setState(() {});
     } catch (err) {
-      if (err is NotFoundMovie) {
-        errorMessage = ErrorMessage(
-          title: "Ops!",
-          message: "Não foi possível encontrar esse título.",
-        );
-      } else {
-        errorMessage = ErrorMessage(
-          title: "Erro",
-          message: "Algo deu errado. Tente novamente.",
-        );
-      }
+      errorMessage = ErrorMessage(
+        title: "Erro",
+        message: "Algo deu errado. Tente novamente.",
+      );
     }
   }
 
@@ -92,8 +84,8 @@ class MoviePageState extends State<MoviePage> {
                   ? const Center(child: CircularProgressIndicator())
                   : Stack(
                       children: [
-                        MovieBackdrop(imageUrl: movie!.movie.backdropPath),
-                        MovieContent(data: movie!),
+                        MovieBackdrop(imageUrl: movie!.backdropUrl),
+                        MovieContent(data: movie!, cast: cast!),
                       ],
                     )),
       ),

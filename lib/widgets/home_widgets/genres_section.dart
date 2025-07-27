@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/models/genre.dart';
-import 'package:project_a/widgets/genres_scroll_list.dart';
+import 'package:project_a/widgets/home_widgets/genres_scroll_list.dart';
 
 class GenresSection extends StatelessWidget {
   const GenresSection({super.key});

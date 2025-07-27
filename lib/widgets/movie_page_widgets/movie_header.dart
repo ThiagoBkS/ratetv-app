@@ -1,13 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/models/movie.dart';
+import 'package:project_a/models/tmdb_models/tmdb_movie_preview.dart';
 import 'package:project_a/utils/font_size.dart';
 import 'package:project_a/utils/spacing.dart';
-import 'package:project_a/widgets/movie_poster.dart';
+import 'package:project_a/widgets/movie_card/movie_card.dart';
 import 'package:project_a/widgets/movie_section_details.dart';
 
 class MovieHeader extends StatelessWidget {
-  final CompleteMovie data;
+  final Movie data;
   const MovieHeader({super.key, required this.data});
 
   @override
@@ -20,21 +23,37 @@ class MovieHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: Spacing.normal,
           children: [
-            Flexible(flex: 2, child: MoviePoster(data: data)),
+            Flexible(
+              flex: 2,
+              child: MovieCard(
+                details: TmdbMoviePreview(
+                  isAdult: data.isAdult,
+                  backdropUrl: data.backdropUrl,
+                  genreIds: data.genreIds,
+                  id: data.id,
+                  overview: data.overview,
+                  posterUrl: data.posterUrl,
+                  releaseDate: data.releaseDate,
+                  title: data.title,
+                  voteAverage: data.voteAverage,
+                  voteCount: data.voteCount,
+                ),
+              ),
+            ),
             Expanded(flex: 5, child: MovieSectionDetails(data: data)),
           ],
         ),
         SizedBox(height: Spacing.extraSmall),
-        if (data.movie.tagline.isNotEmpty)
+        if (data.tagline.isNotEmpty)
           Text(
-            "“${data.movie.tagline}”",
+            "“${data.tagline}”",
             style: GoogleFonts.montserrat(
               fontStyle: FontStyle.italic,
               fontSize: FontSize.normal,
             ),
           ),
         Text(
-          data.movie.overview,
+          data.overview,
           style: GoogleFonts.montserrat(
             fontSize: FontSize.normal,
             fontWeight: FontWeight.w400,

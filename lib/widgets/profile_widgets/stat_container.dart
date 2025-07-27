@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_a/widgets/stat_column.dart';
+import 'package:project_a/widgets/profile_widgets/stat_column.dart';
 
 class StatContainer extends StatelessWidget {
   const StatContainer({super.key});

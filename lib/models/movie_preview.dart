@@ -1,16 +1,11 @@
-abstract class Movie {
+abstract class MoviePreview {
   bool get isAdult;
   String get backdropUrl;
-  int get budget;
   List<int> get genreIds;
   int get id;
-  String get imdbId;
   String get overview;
   String get posterUrl;
   DateTime get releaseDate;
-  int get revenue;
-  int get runtime;
-  String get tagline;
   String get title;
   double get voteAverage;
   int get voteCount;

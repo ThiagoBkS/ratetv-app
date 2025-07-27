@@ -4,12 +4,13 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:project_a/utils/utils.dart';
 
 class ImageErrorWidget extends StatelessWidget {
-  final String? label;
-  const ImageErrorWidget({super.key, this.label});
+  final String label;
+  const ImageErrorWidget({super.key, this.label = "Sem título"});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(4),
       color: Color.fromRGBO(56, 63, 68, 1),
       child: Center(
         child: LayoutBuilder(
@@ -27,7 +28,10 @@ class ImageErrorWidget extends StatelessWidget {
                   size: valueOfPercentage(constraints.maxWidth, 0.35),
                 ),
                 Text(
-                  label ?? "Sem título",
+                  label,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.montserrat(
                     fontSize: fontSize,
                     fontWeight: FontWeight.w600,

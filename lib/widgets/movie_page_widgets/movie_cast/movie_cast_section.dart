@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/cast.dart';
+import 'package:project_a/models/movie_cast.dart';
 import 'package:project_a/utils/font_size.dart';
 import 'package:project_a/utils/spacing.dart';
-import 'package:project_a/widgets/movie_cast_card.dart';
+import 'package:project_a/widgets/movie_page_widgets/movie_cast/movie_cast_card.dart';
 
 class MovieCastSection extends StatelessWidget {
-  final List<TMDBCast> castList;
+  final List<MovieCast> castList;
   const MovieCastSection({super.key, required this.castList});
+
+  // required this.castList
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class MovieCastSection extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Text("(${castList.length})"),
+                // Text("(${castList.length})"),
               ],
             ),
             InkWell(
@@ -45,13 +47,13 @@ class MovieCastSection extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
-              for (TMDBCast cast in castList)
+              for (MovieCast cast in castList)
                 Padding(
                   padding: EdgeInsets.only(right: 8),
                   child: MovieCastCard(
                     imageUrl:
-                        "https://media.themoviedb.org/t/p/w300/${cast.profilePath}",
-                    character: cast.originalName,
+                        "https://media.themoviedb.org/t/p/w300/${cast.image}",
+                    character: cast.character,
                     originalName: cast.character,
                   ),
                 ),

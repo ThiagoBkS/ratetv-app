@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/models/movie.dart';
-import 'package:project_a/models/streaming_provider.dart';
+import 'package:project_a/models/streaming_service.dart';
+import 'package:project_a/models/tmdb_models/tmdb_streaming_service.dart';
 import 'package:project_a/utils/font_size.dart';
 import 'package:project_a/utils/spacing.dart';
-import 'package:project_a/widgets/movie_streaming_chip.dart';
+import 'package:project_a/widgets/movie_page_widgets/movie_streaming/movie_streaming_chip.dart';
 
 class MovieAvaliableStreamings extends StatelessWidget {
-  final CompleteMovie data;
+  final Movie data;
   MovieAvaliableStreamings({super.key, required this.data});
 
   final List<dynamic> providers = [
@@ -33,8 +34,8 @@ class MovieAvaliableStreamings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<StreamingProvider> provider = providers
-        .map((json) => StreamingProvider.fromJson(json))
+    List<StreamingService> provider = providers
+        .map((json) => TmdbStreamingService.fromJson(json))
         .toList();
 
     return Column(
@@ -53,11 +54,8 @@ class MovieAvaliableStreamings extends StatelessWidget {
             spacing: Spacing.extraSmall,
             runSpacing: Spacing.extraSmall,
             children: [
-              for (StreamingProvider platform in provider)
-                MovieStreamingChip(
-                  image: "http://image.tmdb.org/t/p/w92/" + platform.logoPath,
-                  label: platform.providerName,
-                ),
+              for (StreamingService platform in provider)
+                MovieStreamingChip(image: platform.logo, label: platform.name),
             ],
           ),
         ),

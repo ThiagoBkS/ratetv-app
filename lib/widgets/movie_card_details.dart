@@ -1,26 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/basic_movie.dart';
-import 'package:project_a/services/tmdb_service.dart';
+import 'package:project_a/models/genre.dart';
+import 'package:project_a/models/movie_preview.dart';
 import 'package:project_a/widgets/genre_chip.dart';
-import 'package:project_a/widgets/movie_details_poster.dart';
+import 'package:project_a/widgets/movie_card/movie_card.dart';
+import 'package:intl/intl.dart';
 
-class MovieDetails extends StatelessWidget {
-  final BasicMovie details;
-  const MovieDetails({super.key, required this.details});
-
-  Widget genreIdToWidget(int genreId) {
-    // String? genre =
-    //     availableGenres.firstWhere((genre) => genre.id == genreId).toString() ??
-    //     "";
-
-    return GenreChip(label: "TESTE");
-  }
+class MovieCardDetails extends StatelessWidget {
+  final MoviePreview details;
+  const MovieCardDetails({super.key, required this.details});
 
   @override
   Widget build(BuildContext context) {
-    // final decimalPattern = NumberFormat.decimalPattern("pt_BR");
-
     return Column(
       spacing: 8,
       children: [
@@ -30,10 +21,7 @@ class MovieDetails extends StatelessWidget {
           children: [
             ConstrainedBox(
               constraints: BoxConstraints(maxHeight: 150),
-              child: MovieDetailsPoster(
-                posterImage:
-                    "https://image.tmdb.org/t/p/w500/${details.posterUrl}",
-              ),
+              child: MovieCard(details: details),
             ),
             Expanded(
               flex: 3,
@@ -54,9 +42,10 @@ class MovieDetails extends StatelessWidget {
                     spacing: 4,
                     children: [
                       Text(
-                        TmdbService.formattedDate(
-                          details.releaseDate.toString(),
-                        ),
+                        DateFormat(
+                          "dd MMM. yyyy",
+                          "pt_BR",
+                        ).format(details.releaseDate).toString(),
                         style: GoogleFonts.montserrat(
                           fontSize: 12,
                           color: Colors.white,
@@ -67,8 +56,9 @@ class MovieDetails extends StatelessWidget {
                   Wrap(
                     spacing: 4,
                     runSpacing: 4,
-                    children: List.generate(details.genreIds!.length, (index) {
-                      return genreIdToWidget(details.genreIds![index]);
+                    children: List.generate(details.genreIds.length, (index) {
+                      int id = details.genreIds[index];
+                      return GenreChip(label: Genre.getGenreById(id).label);
                     }),
                   ),
                   Row(
@@ -85,14 +75,14 @@ class MovieDetails extends StatelessWidget {
                         spacing: 4,
                         children: [
                           Text(
-                            "${details.voteAverage}/10",
+                            "${NumberFormat("#,##0.0", "pt_BR").format(details.voteAverage)}/10",
                             style: GoogleFonts.montserrat(
                               fontSize: 12,
                               color: Colors.white,
                             ),
                           ),
                           Text(
-                            "(${details.voteCount})",
+                            "(${NumberFormat.decimalPattern('pt_BR').format(details.voteCount)})",
                             style: GoogleFonts.montserrat(
                               fontSize: 12,
                               color: Colors.white,

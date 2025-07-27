@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_a/utils/spacing.dart';
-import 'package:project_a/widgets/movie_action_button.dart';
+import 'package:project_a/widgets/movie_page_widgets/movie_action/movie_action_button.dart';
 
 class MovieActionButtons extends StatelessWidget {
   final List<MovieActionButton> buttons;

@@ -29,4 +29,8 @@ class Genre {
   final IconData icon;
 
   const Genre({required this.id, required this.label, required this.icon});
+
+  static Genre getGenreById(int id) {
+    return availableGenres.firstWhere((genre) => genre.id == id);
+  }
 }

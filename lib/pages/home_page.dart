@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/basic_movie.dart';
+import 'package:project_a/models/movie_preview.dart';
+import 'package:project_a/models/tmdb_models/tmdb_movie_preview.dart';
 import 'package:project_a/pages/movie_page.dart';
 import 'package:project_a/pages/search_page.dart';
+import 'package:project_a/service/tmdb_service.dart';
 import 'package:project_a/widgets/custom_search_bar.dart';
-import 'package:project_a/widgets/genres_section.dart';
-import 'package:project_a/widgets/movie_card.dart';
+import 'package:project_a/widgets/home_widgets/genres_section.dart';
+import 'package:project_a/widgets/movie_card/movie_card.dart';
 
 class HomePage extends StatelessWidget {
   final Function(int movieId) onMovieSelected;
@@ -1063,15 +1065,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<BasicMovie> movies = moviesJson
-        .map((json) => BasicMovie.fromJson(json))
+    List<MoviePreview> movies = moviesJson
+        .map((json) => TmdbMoviePreview.fromJson(json))
         .toList();
 
-    List<BasicMovie> comedy = comedyMovies
-        .map((json) => BasicMovie.fromJson(json))
+    List<MoviePreview> comedy = comedyMovies
+        .map((json) => TmdbMoviePreview.fromJson(json))
         .toList();
 
-    List<BasicMovie> xxx = xx.map((json) => BasicMovie.fromJson(json)).toList();
+    List<MoviePreview> xxx = xx
+        .map((json) => TmdbMoviePreview.fromJson(json))
+        .toList();
 
     return Scaffold(
       body: SafeArea(
@@ -1123,10 +1127,20 @@ class HomePage extends StatelessWidget {
                           padding: EdgeInsets.only(right: 8),
                           child: MovieCard(
                             details: movies[index],
+                            enableDetailsSheet: true,
                             onTap: () {
-                              onMovieSelected(movies[index].id);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MoviePage(
+                                    movieId: movies[index].id,
+                                    onBackToMain: () => {
+                                      Navigator.pop(context),
+                                    },
+                                  ),
+                                ),
+                              );
                             },
-                            onPress: () {},
                           ),
                         );
                       }),
@@ -1158,12 +1172,14 @@ class HomePage extends StatelessWidget {
                           padding: EdgeInsets.only(right: 8),
                           child: MovieCard(
                             details: comedy[index],
+                            enableDetailsSheet: true,
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => MoviePage(
                                     movieId: movies[index].id,
+
                                     onBackToMain: () => {
                                       Navigator.pop(context),
                                     },
@@ -1171,7 +1187,6 @@ class HomePage extends StatelessWidget {
                                 ),
                               );
                             },
-                            onPress: () {},
                           ),
                         );
                       }),
@@ -1203,6 +1218,7 @@ class HomePage extends StatelessWidget {
                           padding: EdgeInsets.only(right: 8),
                           child: MovieCard(
                             details: xxx[index],
+                            enableDetailsSheet: true,
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -1216,7 +1232,6 @@ class HomePage extends StatelessWidget {
                                 ),
                               );
                             },
-                            onPress: () {},
                           ),
                         );
                       }),
@@ -1246,6 +1261,7 @@ class HomePage extends StatelessWidget {
                           padding: EdgeInsets.only(right: 8),
                           child: MovieCard(
                             details: comedy[index],
+                            enableDetailsSheet: true,
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -1259,7 +1275,6 @@ class HomePage extends StatelessWidget {
                                 ),
                               );
                             },
-                            onPress: () {},
                           ),
                         );
                       }),

@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/models/movie.dart';
-import 'package:project_a/models/tmdb_movie.dart';
+import 'package:project_a/models/movie_cast.dart';
 import 'package:project_a/utils/spacing.dart';
-import 'package:project_a/widgets/info_row.dart';
-import 'package:project_a/widgets/movie_action_button.dart';
-import 'package:project_a/widgets/movie_action_buttons.dart';
-import 'package:project_a/widgets/movie_avaliable_streamings.dart';
-import 'package:project_a/widgets/movie_cast_section.dart';
-import 'package:project_a/widgets/movie_header.dart';
+import 'package:project_a/widgets/movie_page_widgets/movie_action/movie_action_button.dart';
+import 'package:project_a/widgets/movie_page_widgets/movie_action/movie_action_buttons.dart';
+import 'package:project_a/widgets/movie_page_widgets/movie_cast/movie_cast_section.dart';
+import 'package:project_a/widgets/movie_page_widgets/movie_header.dart';
+import 'package:project_a/widgets/movie_page_widgets/movie_streaming/movie_avaliable_streamings.dart';
 
 class MovieContent extends StatelessWidget {
-  final CompleteMovie data;
+  final Movie data;
+  final List<MovieCast> cast;
 
-  const MovieContent({super.key, required this.data});
+  const MovieContent({super.key, required this.data, required this.cast});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class MovieContent extends StatelessWidget {
             ],
           ),
           SizedBox(height: Spacing.medium),
-          if (data.cast.isNotEmpty) MovieCastSection(castList: data.cast),
+          if (cast.isNotEmpty) MovieCastSection(castList: cast),
           SizedBox(height: Spacing.medium),
           Divider(color: Colors.grey[800]),
           SizedBox(height: Spacing.medium),
@@ -58,18 +58,8 @@ class MovieContent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: Spacing.small,
             children: [
-              InfoRow(
-                title: "Budget:",
-                label: TMDBMovie.formattedCurrency(
-                  data.movie.budget.toDouble(),
-                ),
-              ),
-              InfoRow(
-                title: "Revenue:",
-                label: TMDBMovie.formattedCurrency(
-                  data.movie.revenue.toDouble(),
-                ),
-              ),
+              // InfoRow(title: "Budget:", label: data.movie.budget),
+              // InfoRow(title: "Revenue:", label: data.movie.revenue),
             ],
           ),
           SizedBox(height: Spacing.medium),

@@ -12,18 +12,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Color.fromRGBO(24, 28, 31, 1),
-        textTheme: GoogleFonts.montserratTextTheme(),
-      ),
-
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: Color.fromRGBO(24, 28, 31, 1),
-        textTheme: GoogleFonts.montserratTextTheme().apply(
-          bodyColor: Colors.white, // Cor padrão do texto
-          displayColor: Colors.white, // Cor para títulos
+        textTheme: GoogleFonts.montserratTextTheme(
+          ThemeData(brightness: Brightness.dark).textTheme,
         ),
       ),
-      themeMode: ThemeMode.dark,
       home: MainPage(),
     );
   }

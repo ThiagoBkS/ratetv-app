@@ -2,19 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/models/movie.dart';
-import 'package:project_a/models/tmdb_genre.dart';
-import 'package:project_a/models/tmdb_movie.dart';
 import 'package:project_a/utils/font_size.dart';
 import 'package:project_a/utils/spacing.dart';
 
 class MovieSectionDetails extends StatelessWidget {
-  final CompleteMovie data;
+  final Movie data;
   MovieSectionDetails({super.key, required this.data});
-
-  final List<TMDBGenre> genres = [
-    TMDBGenre(id: 18, name: "Drama"),
-    TMDBGenre(id: 53, name: "Thriller"),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +17,7 @@ class MovieSectionDetails extends StatelessWidget {
         spacing: Spacing.small,
         children: [
           Text(
-            data.movie.title,
+            data.title,
             style: GoogleFonts.montserrat(
               color: Colors.white,
               fontSize: FontSize.extraLarge,
@@ -35,7 +28,7 @@ class MovieSectionDetails extends StatelessWidget {
             spacing: Spacing.extraSmall,
             children: [
               Text(
-                TMDBMovie.formattedDate(data.movie.releaseDate.toString()),
+                data.releaseDate.toString(),
                 style: GoogleFonts.montserrat(fontSize: FontSize.normal),
               ),
               Text(
@@ -43,7 +36,7 @@ class MovieSectionDetails extends StatelessWidget {
                 style: GoogleFonts.montserrat(fontSize: FontSize.normal),
               ),
               Text(
-                TMDBMovie.formattedTime(139),
+                0.toString(),
                 style: GoogleFonts.montserrat(fontSize: FontSize.normal),
               ),
             ],
@@ -68,11 +61,11 @@ class MovieSectionDetails extends StatelessWidget {
                 spacing: Spacing.extraSmall,
                 children: [
                   Text(
-                    "${data.movie.voteAverage}/10",
+                    "${data.voteAverage}/10",
                     style: GoogleFonts.montserrat(fontSize: FontSize.normal),
                   ),
                   Text(
-                    "(${data.movie.voteCount})",
+                    "(${data.voteCount})",
                     style: GoogleFonts.montserrat(
                       fontSize: FontSize.extraSmall,
                     ),

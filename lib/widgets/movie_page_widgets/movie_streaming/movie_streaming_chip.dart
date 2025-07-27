@@ -30,7 +30,7 @@ class MovieStreamingChip extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(Spacing.small),
                 child: Image.network(
-                  image,
+                  "https://image.tmdb.org/t/p/w500/${image}",
                   errorBuilder: (context, error, stackTrace) {
                     return Text("opa");
                   },

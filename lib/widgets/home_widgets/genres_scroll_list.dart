@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_a/models/genre.dart';
-import 'package:project_a/widgets/genre_scroll_list_chip.dart';
+import 'package:project_a/widgets/home_widgets/genre_scroll_list_chip.dart';
 
 class GenresScrollList extends StatelessWidget {
   final List<Genre> genres;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/widgets/media_collection.dart';
-import 'package:project_a/widgets/profile_app_bar.dart';
-import 'package:project_a/widgets/stat_container.dart';
+import 'package:project_a/widgets/profile_widgets/media_collection.dart';
+import 'package:project_a/widgets/profile_widgets/profile_app_bar.dart';
+import 'package:project_a/widgets/profile_widgets/stat_container.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

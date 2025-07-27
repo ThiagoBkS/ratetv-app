@@ -41,7 +41,7 @@ class _MainPageState extends State<MainPage> {
         return HomePage(
           onMovieSelected: (movieId) {
             setState(() {
-              selectedMovieId = 2;
+              selectedMovieId = movieId;
             });
           },
         );
