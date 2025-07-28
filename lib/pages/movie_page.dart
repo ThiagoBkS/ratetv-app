@@ -54,10 +54,10 @@ class MoviePageState extends State<MoviePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Filme"),
-        leading: BackButton(onPressed: onBackToMain),
-      ),
+      // appBar: AppBar(
+      //   title: Text("Filme"),
+      //   leading: BackButton(onPressed: onBackToMain),
+      // ),
       body: SafeArea(
         child: errorMessage != null
             ? Center(
@@ -84,7 +84,7 @@ class MoviePageState extends State<MoviePage> {
                   ? const Center(child: CircularProgressIndicator())
                   : Stack(
                       children: [
-                        MovieBackdrop(imageUrl: movie!.backdropUrl),
+                        // MovieBackdrop(imageUrl: movie!.backdropUrl),
                         MovieContent(data: movie!, cast: cast!),
                       ],
                     )),

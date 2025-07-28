@@ -1,10 +1,11 @@
+import 'package:project_a/models/production/origin_country.dart';
 import 'package:project_a/models/production/production_company.dart';
 import 'package:project_a/models/production/production_country.dart';
 import 'package:project_a/utils/data_adapter.dart';
 
 class MovieProduction {
   final String originalTitle;
-  final String originCountry;
+  final List<OriginCountry> originCountry;
   final int budget;
   final int revenue;
   final List<ProductionCompany> productionCompanies;
@@ -29,10 +30,7 @@ class MovieProduction {
         json["original_title"],
         "Desconhecido",
       ),
-      originCountry: DataAdapter.parseString(
-        json["origin_country"],
-        "Desconhecido",
-      ),
+      originCountry: [OriginCountry(name: "US")],
       budget: DataAdapter.parseInt(json["budget"], 0),
       revenue: DataAdapter.parseInt(json["revenue"], 0),
       productionCompanies: [

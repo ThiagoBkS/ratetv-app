@@ -48,6 +48,14 @@ class Movie {
     required this.productionCountry,
   });
 
+  static String formatRuntime(int runtime) {
+    int hours = (runtime / 60).toInt();
+    int minutes = (runtime % 60).toInt();
+
+    if (hours <= 0) return "${minutes}m";
+    return "${hours}h ${minutes}m";
+  }
+
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
       isAdult: DataAdapter.parseBool(json["adult"], false),

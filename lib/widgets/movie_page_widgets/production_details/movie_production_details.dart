@@ -14,8 +14,8 @@ class MovieProductionDetails extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Color.fromRGBO(25, 31, 36, 1),
-        border: BoxBorder.all(color: Color.fromRGBO(33, 41, 46, 1)),
+        color: Color.fromRGBO(56, 63, 68, 0.25),
+        border: Border.all(color: Color.fromRGBO(56, 63, 68, 1)),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -36,7 +36,9 @@ class MovieProductionDetails extends StatelessWidget {
           ),
           ProductionDetailsItem(
             label: "País de origem",
-            value: production.originCountry,
+            value: production.originCountry
+                .map((production) => production.name)
+                .join(', '),
           ),
           ProductionDetailsItem(
             label: "Orçamento",
@@ -50,13 +52,13 @@ class MovieProductionDetails extends StatelessWidget {
             label: "País de produção",
             value: production.productionCountry
                 .map((production) => production.name)
-                .toString(),
+                .join(', '),
           ),
           ProductionDetailsItem(
             label: "Produtoras",
             value: production.productionCompanies
                 .map((production) => production.name)
-                .toString(),
+                .join(', '),
           ),
         ],
       ),

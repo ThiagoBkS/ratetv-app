@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/models/production/movie_production.dart';
+import 'package:project_a/models/production/origin_country.dart';
 import 'package:project_a/models/tmdb_models/movie.dart';
 import 'package:project_a/models/tmdb_models/movie_cast.dart';
-import 'package:project_a/utils/spacing.dart';
-import 'package:project_a/widgets/movie_page_widgets/info_row.dart';
+import 'package:project_a/utils/palette.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_action/movie_action_button.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_action/movie_action_buttons.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_cast/movie_cast_section.dart';
@@ -52,14 +52,14 @@ class MovieContent extends StatelessWidget {
                 ],
               ),
               MovieAvaliableStreamings(data: data),
-
-              if (cast.isNotEmpty) MovieCastSection(castList: cast),
-              Divider(color: Colors.grey[800]),
+              SizedBox(height: 16),
+              MovieCastSection(castList: cast),
+              Divider(color: Palette.placeholderColor),
 
               MovieProductionDetails(
                 production: MovieProduction(
                   originalTitle: data.originalTitle,
-                  originCountry: data.originCountry,
+                  originCountry: [OriginCountry(name: "US")],
                   budget: data.budget,
                   revenue: data.revenue,
                   productionCompanies: data.productionCompanies,

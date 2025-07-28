@@ -5,6 +5,7 @@ import 'package:project_a/models/genre.dart';
 import 'package:project_a/models/tmdb_models/movie.dart';
 import 'package:project_a/utils/font_size.dart';
 import 'package:project_a/utils/spacing.dart';
+import 'package:project_a/utils/utils.dart';
 import 'package:project_a/widgets/genre_chip.dart';
 
 class MovieSectionDetails extends StatelessWidget {
@@ -30,7 +31,7 @@ class MovieSectionDetails extends StatelessWidget {
             spacing: Spacing.extraSmall,
             children: [
               Text(
-                data.releaseDate.toString(),
+                formatDate(data.releaseDate),
                 style: GoogleFonts.montserrat(fontSize: FontSize.normal),
               ),
               Text(
@@ -38,7 +39,7 @@ class MovieSectionDetails extends StatelessWidget {
                 style: GoogleFonts.montserrat(fontSize: FontSize.normal),
               ),
               Text(
-                0.toString(),
+                Movie.formatRuntime(data.runtime),
                 style: GoogleFonts.montserrat(fontSize: FontSize.normal),
               ),
             ],

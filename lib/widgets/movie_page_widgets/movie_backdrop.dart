@@ -8,7 +8,7 @@ class MovieBackdrop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1 / 0.6,
+      aspectRatio: 1 / 0.5,
       child: Stack(
         children: [
           SizedBox(

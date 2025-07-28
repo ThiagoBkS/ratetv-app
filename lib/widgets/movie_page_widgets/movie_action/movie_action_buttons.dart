@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_a/utils/palette.dart';
 import 'package:project_a/utils/spacing.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_action/movie_action_button.dart';
 
@@ -13,9 +12,8 @@ class MovieActionButtons extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(Spacing.small),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Spacing.normal),
-        color: Palette.primaryColor,
-        border: BoxBorder.all(color: Palette.primaryColor),
+        borderRadius: BorderRadius.circular(Spacing.medium),
+        border: Border.all(color: Color.fromRGBO(56, 63, 68, 1)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -39,11 +39,7 @@ class MovieAvaliableStreamings extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(25, 31, 36, 1),
-        border: BoxBorder.all(color: Color.fromRGBO(33, 41, 46, 1)),
-        borderRadius: BorderRadius.circular(16),
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: Spacing.medium,
