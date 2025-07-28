@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_a/models/genre.dart';
 import 'package:project_a/models/tmdb_models/movie.dart';
-import 'package:project_a/models/tmdb_models/movie_basic.dart';
 import 'package:project_a/utils/font_size.dart';
 import 'package:project_a/utils/spacing.dart';
+import 'package:project_a/widgets/genre_chip.dart';
 
 class MovieSectionDetails extends StatelessWidget {
   final Movie data;
-  MovieSectionDetails({super.key, required this.data});
+  const MovieSectionDetails({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +43,14 @@ class MovieSectionDetails extends StatelessWidget {
               ),
             ],
           ),
-          // Wrap(
-          //   spacing: Spacing.small,
-          //   children: genres.map((genre) {
-          //     return GenreChip(id: genre.id, label: genre.name);
-          //   }).toList(),
-          // ),
+
+          Wrap(
+            spacing: Spacing.small,
+            children: data.genreIds
+                .map((id) => GenreChip(label: Genre.getGenreById(id).label))
+                .toList(),
+          ),
+
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             spacing: Spacing.extraSmall,

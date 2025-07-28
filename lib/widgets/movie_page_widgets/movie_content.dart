@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_a/models/production/movie_production.dart';
 import 'package:project_a/models/tmdb_models/movie.dart';
 import 'package:project_a/models/tmdb_models/movie_cast.dart';
 import 'package:project_a/utils/spacing.dart';
@@ -10,6 +13,7 @@ import 'package:project_a/widgets/movie_page_widgets/movie_action/movie_action_b
 import 'package:project_a/widgets/movie_page_widgets/movie_cast/movie_cast_section.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_header.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_streaming/movie_avaliable_streamings.dart';
+import 'package:project_a/widgets/movie_page_widgets/production_details/movie_production_details.dart';
 
 class MovieContent extends StatelessWidget {
   final Movie data;
@@ -27,7 +31,6 @@ class MovieContent extends StatelessWidget {
             spacing: 8,
             children: [
               MovieHeader(data: data),
-              MovieAvaliableStreamings(data: data),
               MovieActionButtons(
                 buttons: [
                   MovieActionButton(
@@ -48,16 +51,22 @@ class MovieContent extends StatelessWidget {
                   ),
                 ],
               ),
+              MovieAvaliableStreamings(data: data),
+
               if (cast.isNotEmpty) MovieCastSection(castList: cast),
               Divider(color: Colors.grey[800]),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: Spacing.small,
-                children: [
-                  InfoRow(title: "Budget:", label: data.budget.toString()),
-                  InfoRow(title: "Revenue:", label: data.revenue.toString()),
-                ],
+
+              MovieProductionDetails(
+                production: MovieProduction(
+                  originalTitle: data.originalTitle,
+                  originCountry: data.originCountry,
+                  budget: data.budget,
+                  revenue: data.revenue,
+                  productionCompanies: data.productionCompanies,
+                  productionCountry: data.productionCountry,
+                ),
               ),
+
               Text(
                 "Todos os dados exibidos nesta aplicação são fornecidos pela API do The Movie Database (TMDb).",
                 style: GoogleFonts.montserrat(color: Colors.grey, fontSize: 14),

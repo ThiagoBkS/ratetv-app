@@ -37,28 +37,39 @@ class MovieAvaliableStreamings extends StatelessWidget {
         .map((json) => StreamingService.fromJson(json))
         .toList();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      spacing: Spacing.medium,
-      children: [
-        Text(
-          "Onde assitir?",
-          style: GoogleFonts.montserrat(
-            fontSize: FontSize.large,
-            fontWeight: FontWeight.w700,
+    return Container(
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Color.fromRGBO(25, 31, 36, 1),
+        border: BoxBorder.all(color: Color.fromRGBO(33, 41, 46, 1)),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        spacing: Spacing.medium,
+        children: [
+          Text(
+            "Onde assitir?",
+            style: GoogleFonts.montserrat(
+              fontSize: FontSize.large,
+              fontWeight: FontWeight.w700,
+            ),
           ),
-        ),
-        Center(
-          child: Wrap(
-            spacing: Spacing.extraSmall,
-            runSpacing: Spacing.extraSmall,
-            children: [
-              for (StreamingService platform in provider)
-                MovieStreamingChip(image: platform.logo, label: platform.name),
-            ],
+          Center(
+            child: Wrap(
+              spacing: Spacing.extraSmall,
+              runSpacing: Spacing.extraSmall,
+              children: [
+                for (StreamingService platform in provider)
+                  MovieStreamingChip(
+                    image: platform.logo,
+                    label: platform.name,
+                  ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

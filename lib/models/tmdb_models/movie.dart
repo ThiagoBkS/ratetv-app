@@ -1,3 +1,5 @@
+import 'package:project_a/models/production/production_company.dart';
+import 'package:project_a/models/production/production_country.dart';
 import 'package:project_a/service/tmdb_service.dart';
 import 'package:project_a/utils/data_adapter.dart';
 
@@ -18,6 +20,11 @@ class Movie {
   final double voteAverage;
   final int voteCount;
 
+  final String originalTitle;
+  final String originCountry;
+  final List<ProductionCompany> productionCompanies;
+  final List<ProductionCountry> productionCountry;
+
   Movie({
     required this.isAdult,
     required this.backdropUrl,
@@ -34,6 +41,11 @@ class Movie {
     required this.title,
     required this.voteAverage,
     required this.voteCount,
+
+    required this.originalTitle,
+    required this.originCountry,
+    required this.productionCompanies,
+    required this.productionCountry,
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
@@ -65,6 +77,26 @@ class Movie {
       title: DataAdapter.parseString(json['title'], "Sem título"),
       voteAverage: DataAdapter.parseDouble(json['vote_average'], 0.0),
       voteCount: DataAdapter.parseInt(json['vote_count'], 0),
+
+      originalTitle: DataAdapter.parseString(
+        json["original_title"],
+        "Desconhecido",
+      ),
+      originCountry: DataAdapter.parseString(
+        json["origin_country"],
+        "Desconhecido",
+      ),
+      productionCompanies: [
+        ProductionCompany(name: "Fox 2000 Pictures"),
+        ProductionCompany(name: "Regency Enterprises"),
+        ProductionCompany(name: "Linson Entertainment"),
+        ProductionCompany(name: "20th Century Fox"),
+        ProductionCompany(name: "Taurus Film"),
+      ],
+      productionCountry: [
+        ProductionCountry(name: "Germany"),
+        ProductionCountry(name: "United States of America"),
+      ],
     );
   }
 }

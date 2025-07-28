@@ -41,35 +41,30 @@ class CustomSearchBarState extends State<CustomSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Color.fromRGBO(24, 28, 31, 1),
-      child: Padding(
-        padding: EdgeInsets.all(16),
-        child: SizedBox(
-          width: double.infinity,
-          height: 52,
-          child: SearchBar(
-            focusNode: FocusNode(),
-            onChanged: (value) {
-              _onChanged(value);
-            },
-            controller: _controller,
-            backgroundColor: WidgetStatePropertyAll(
-              Color.fromRGBO(36, 41, 44, 1),
-            ),
-            elevation: WidgetStatePropertyAll(0),
-            padding: WidgetStatePropertyAll(
-              EdgeInsets.symmetric(horizontal: 8),
-            ),
-            shape: WidgetStatePropertyAll(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            ),
-            leading: Padding(
-              padding: EdgeInsetsDirectional.only(start: 8),
-              child: Icon(Icons.search),
-            ),
-            hintText: "Busque por filmes ou atores",
+    return Padding(
+      padding: EdgeInsets.all(16),
+      child: SizedBox(
+        width: double.infinity,
+        height: 52,
+        child: SearchBar(
+          focusNode: FocusNode(),
+          onChanged: (value) {
+            _onChanged(value);
+          },
+          controller: _controller,
+          backgroundColor: WidgetStatePropertyAll(
+            Color.fromRGBO(36, 41, 44, 1),
           ),
+          elevation: WidgetStatePropertyAll(0),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 8)),
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+          leading: Padding(
+            padding: EdgeInsetsDirectional.only(start: 8),
+            child: Icon(Icons.search),
+          ),
+          hintText: "Busque por filmes ou atores",
         ),
       ),
     );

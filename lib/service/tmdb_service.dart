@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:project_a/models/tmdb_models/movie.dart';
 import 'package:project_a/models/tmdb_models/movie_cast.dart';
 import 'package:project_a/models/tmdb_models/movie_basic.dart';
-import 'package:project_a/service/local_cache_service.dart';
 
 class TmdbService {
   static String apiKey = dotenv.get("TMDB_API_KEY");

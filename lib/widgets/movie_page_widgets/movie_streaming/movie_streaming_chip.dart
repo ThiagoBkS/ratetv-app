@@ -15,38 +15,41 @@ class MovieStreamingChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      borderRadius: BorderRadius.circular(Spacing.extraSmall),
-      child: Container(
-        padding: EdgeInsets.all(Spacing.small),
-        width: 96,
-        child: Column(
-          spacing: Spacing.extraSmall,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 48,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(Spacing.small),
-                child: Image.network(
-                  "https://image.tmdb.org/t/p/w500/${image}",
-                  errorBuilder: (context, error, stackTrace) {
-                    return Text("opa");
-                  },
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {},
+        borderRadius: BorderRadius.circular(Spacing.extraSmall),
+        child: Container(
+          padding: EdgeInsets.all(Spacing.small),
+          width: 96,
+          child: Column(
+            spacing: Spacing.extraSmall,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 48,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(Spacing.small),
+                  child: Image.network(
+                    "https://image.tmdb.org/t/p/w500/${image}",
+                    errorBuilder: (context, error, stackTrace) {
+                      return Text("opa");
+                    },
+                  ),
                 ),
               ),
-            ),
-            Text(
-              label,
-              style: GoogleFonts.montserrat(
-                fontSize: FontSize.small,
-                fontWeight: FontWeight.w500,
+              Text(
+                label,
+                style: GoogleFonts.montserrat(
+                  fontSize: FontSize.small,
+                  fontWeight: FontWeight.w500,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

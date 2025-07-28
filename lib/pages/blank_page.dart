@@ -1,10 +1,87 @@
 import 'package:flutter/material.dart';
+import 'package:project_a/models/production/movie_production.dart';
+import 'package:project_a/widgets/movie_page_widgets/production_details/movie_production_details.dart';
 
 class BlankPage extends StatelessWidget {
-  const BlankPage({super.key});
+  BlankPage({super.key});
+
+  final production = MovieProduction.fromJson({
+    "adult": false,
+    "backdrop_path": "/xRyINp9KfMLVjRiO5nCsoRDdvvF.jpg",
+    "belongs_to_collection": null,
+    "budget": 63000000,
+    "genres": [
+      {"id": 18, "name": "Drama"},
+      {"id": 53, "name": "Thriller"},
+    ],
+    "homepage": "",
+    "id": 550,
+    "imdb_id": "tt0137523",
+    "origin_country": ["US"],
+    "original_language": "en",
+    "original_title": "Fight Club",
+    "overview":
+        "Um homem deprimido que sofre de insônia conhece um estranho vendedor de sabonetes chamado Tyler Durden. Eles formam um clube clandestino com regras rígidas onde lutam com outros homens cansados de suas vidas mundanas. Mas sua parceria perfeita é comprometida quando Marla chama a atenção de Tyler.",
+    "popularity": 23.9655,
+    "poster_path": "/r3pPehX4ik8NLYPpbDRAh0YRtMb.jpg",
+    "production_companies": [
+      {
+        "id": 711,
+        "logo_path": "/tEiIH5QesdheJmDAqQwvtN60727.png",
+        "name": "Fox 2000 Pictures",
+        "origin_country": "US",
+      },
+      {
+        "id": 508,
+        "logo_path": "/7cxRWzi4LsVm4Utfpr1hfARNurT.png",
+        "name": "Regency Enterprises",
+        "origin_country": "US",
+      },
+      {
+        "id": 4700,
+        "logo_path": "/A32wmjrs9Psf4zw0uaixF0GXfxq.png",
+        "name": "Linson Entertainment",
+        "origin_country": "US",
+      },
+      {
+        "id": 25,
+        "logo_path": "/qZCc1lty5FzX30aOCVRBLzaVmcp.png",
+        "name": "20th Century Fox",
+        "origin_country": "US",
+      },
+      {
+        "id": 20555,
+        "logo_path": "/hD8yEGUBlHOcfHYbujp71vD8gZp.png",
+        "name": "Taurus Film",
+        "origin_country": "DE",
+      },
+    ],
+    "production_countries": [
+      {"iso_3166_1": "DE", "name": "Germany"},
+      {"iso_3166_1": "US", "name": "United States of America"},
+    ],
+    "release_date": "1999-10-15",
+    "revenue": 100853753,
+    "runtime": 139,
+    "spoken_languages": [
+      {"english_name": "English", "iso_639_1": "en", "name": "English"},
+    ],
+    "status": "Released",
+    "tagline": "Má conduta. Caos. Sabão.",
+    "title": "Clube da Luta",
+    "video": false,
+    "vote_average": 8.437,
+    "vote_count": 30512,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: Text("")));
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [MovieProductionDetails(production: production)],
+        ),
+      ),
+    );
   }
 }

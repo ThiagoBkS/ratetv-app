@@ -38,9 +38,9 @@ class MovieBackdrop extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color.fromRGBO(24, 28, 31, 1),
-                  Color.fromRGBO(24, 28, 31, 0.8),
-                  Color.fromRGBO(24, 28, 31, 0),
+                  Color.fromRGBO(20, 27, 32, 1),
+                  Color.fromRGBO(20, 27, 32, 0.8),
+                  Color.fromRGBO(20, 27, 32, 0),
                 ],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
