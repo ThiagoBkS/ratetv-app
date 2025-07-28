@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Color.fromRGBO(24, 28, 31, 1),
+        scaffoldBackgroundColor: Color.fromRGBO(23, 24, 28, 1),
         textTheme: GoogleFonts.montserratTextTheme(
           ThemeData(brightness: Brightness.dark).textTheme,
         ),

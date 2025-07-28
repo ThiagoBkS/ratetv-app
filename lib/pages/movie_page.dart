@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_a/exceptions/error_message.dart';
-import 'package:project_a/models/movie.dart';
-import 'package:project_a/models/movie_cast.dart';
+import 'package:project_a/models/tmdb_models/movie.dart';
+import 'package:project_a/models/tmdb_models/movie_cast.dart';
 import 'package:project_a/service/tmdb_service.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_backdrop.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_content.dart';

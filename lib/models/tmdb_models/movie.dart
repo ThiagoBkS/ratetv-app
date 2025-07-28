@@ -1,60 +1,52 @@
-import 'package:project_a/models/movie_preview.dart';
 import 'package:project_a/service/tmdb_service.dart';
 import 'package:project_a/utils/data_adapter.dart';
 
-class TmdbMoviePreview implements MoviePreview {
-  @override
+class Movie {
   final bool isAdult;
-
-  @override
   final String backdropUrl;
-
-  @override
+  final int budget;
   final List<int> genreIds;
-
-  @override
   final int id;
-
-  @override
+  final String imdbId;
   final String overview;
-
-  @override
   final String posterUrl;
-
-  @override
   final DateTime releaseDate;
-
-  @override
+  final int revenue;
+  final int runtime;
+  final String tagline;
   final String title;
-
-  @override
   final double voteAverage;
-
-  @override
   final int voteCount;
 
-  TmdbMoviePreview({
+  Movie({
     required this.isAdult,
     required this.backdropUrl,
+    required this.budget,
     required this.genreIds,
     required this.id,
+    required this.imdbId,
     required this.overview,
     required this.posterUrl,
     required this.releaseDate,
+    required this.revenue,
+    required this.runtime,
+    required this.tagline,
     required this.title,
     required this.voteAverage,
     required this.voteCount,
   });
 
-  factory TmdbMoviePreview.fromJson(Map<String, dynamic> json) {
-    return TmdbMoviePreview(
+  factory Movie.fromJson(Map<String, dynamic> json) {
+    return Movie(
       isAdult: DataAdapter.parseBool(json["adult"], false),
       backdropUrl: DataAdapter.parseString(
         TmdbService.getFullImageSrc(json["backdrop_path"]),
         "",
       ),
-      genreIds: DataAdapter.parseIntList(json['genre_ids'], []),
+      budget: DataAdapter.parseInt(json["budget"], 0),
+      genreIds: DataAdapter.parseIntList(json['genre_ids'], []), // Corrijir
       id: DataAdapter.parseInt(json['id'], -1),
+      imdbId: DataAdapter.parseString(json["tagline"], ""),
       overview: DataAdapter.parseString(
         json['overview'],
         "Descrição não disponível.",
@@ -67,6 +59,9 @@ class TmdbMoviePreview implements MoviePreview {
         json["release_date"],
         DateTime(1970, 1, 1),
       ),
+      revenue: DataAdapter.parseInt(json["revenue"], 0),
+      runtime: DataAdapter.parseInt(json["runtime"], 0),
+      tagline: DataAdapter.parseString(json["tagline"], ""),
       title: DataAdapter.parseString(json['title'], "Sem título"),
       voteAverage: DataAdapter.parseDouble(json['vote_average'], 0.0),
       voteCount: DataAdapter.parseInt(json['vote_count'], 0),

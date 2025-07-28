@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:project_a/models/movie_preview.dart';
+import 'package:project_a/models/tmdb_models/movie_basic.dart';
 import 'package:project_a/utils/utils.dart';
 import 'package:project_a/widgets/movie_card/image_error_widget.dart';
 import 'package:project_a/widgets/movie_card/movie_details_sheet/movie_details_sheet.dart';
 
 class MovieCard extends StatelessWidget {
-  final MoviePreview details;
+  final MovieBasic details;
   final bool enableDetailsSheet;
   final bool enableBookmarked;
   final VoidCallback? onTap;

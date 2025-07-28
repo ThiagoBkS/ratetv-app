@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:project_a/models/movie_preview.dart';
+import 'package:project_a/models/tmdb_models/movie_basic.dart';
 import 'package:project_a/widgets/movie_card_details.dart';
 import 'package:project_a/widgets/movie_card/movie_details_sheet/details_sheet_action_button.dart';
 
-void showMovieDetailsSheet(BuildContext context, MoviePreview details) {
+void showMovieDetailsSheet(BuildContext context, MovieBasic details) {
   showModalBottomSheet(
     context: context,
     backgroundColor: Color.fromRGBO(24, 28, 31, 1),
@@ -13,7 +13,7 @@ void showMovieDetailsSheet(BuildContext context, MoviePreview details) {
 }
 
 class MovieDetailsSheet extends StatelessWidget {
-  final MoviePreview details;
+  final MovieBasic details;
   MovieDetailsSheet({super.key, required this.details});
 
   final List<SheetActionButton> actionButtons = [

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_a/models/movie_preview.dart';
+import 'package:project_a/models/tmdb_models/movie_basic.dart';
 import 'package:project_a/pages/movie_page.dart';
 import 'package:project_a/service/tmdb_service.dart';
 import 'package:project_a/widgets/custom_search_bar.dart';
@@ -16,7 +16,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class SearchPageState extends State<SearchPage> {
-  Future<List<MoviePreview>>? results;
+  Future<List<MovieBasic>>? results;
   FocusNode searchFocusNode = FocusNode();
 
   @override
@@ -52,7 +52,7 @@ class SearchPageState extends State<SearchPage> {
             ),
 
             Expanded(
-              child: FutureBuilder<List<MoviePreview>>(
+              child: FutureBuilder<List<MovieBasic>>(
                 future: results,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/movie.dart';
-import 'package:project_a/models/streaming_service.dart';
-import 'package:project_a/models/tmdb_models/tmdb_streaming_service.dart';
+import 'package:project_a/models/tmdb_models/movie.dart';
+import 'package:project_a/models/tmdb_models/streaming_service.dart';
 import 'package:project_a/utils/font_size.dart';
 import 'package:project_a/utils/spacing.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_streaming/movie_streaming_chip.dart';
@@ -35,7 +34,7 @@ class MovieAvaliableStreamings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<StreamingService> provider = providers
-        .map((json) => TmdbStreamingService.fromJson(json))
+        .map((json) => StreamingService.fromJson(json))
         .toList();
 
     return Column(

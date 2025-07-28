@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/movie.dart';
+import 'package:project_a/models/tmdb_models/movie.dart';
+import 'package:project_a/models/tmdb_models/movie_basic.dart';
 import 'package:project_a/utils/font_size.dart';
 import 'package:project_a/utils/spacing.dart';
 

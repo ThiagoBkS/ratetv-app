@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/models/genre.dart';
-import 'package:project_a/models/movie_preview.dart';
+import 'package:project_a/models/tmdb_models/movie_basic.dart';
 import 'package:project_a/widgets/genre_chip.dart';
 import 'package:project_a/widgets/movie_card/movie_card.dart';
 import 'package:intl/intl.dart';
 
 class MovieCardDetails extends StatelessWidget {
-  final MoviePreview details;
+  final MovieBasic details;
   const MovieCardDetails({super.key, required this.details});
 
   @override

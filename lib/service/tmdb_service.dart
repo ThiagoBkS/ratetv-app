@@ -3,12 +3,10 @@ import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:project_a/models/movie.dart';
-import 'package:project_a/models/movie_cast.dart';
-import 'package:project_a/models/movie_preview.dart';
-import 'package:project_a/models/tmdb_models/tmdb_movie.dart';
-import 'package:project_a/models/tmdb_models/tmdb_movie_cast.dart';
-import 'package:project_a/models/tmdb_models/tmdb_movie_preview.dart';
+import 'package:project_a/models/tmdb_models/movie.dart';
+import 'package:project_a/models/tmdb_models/movie_cast.dart';
+import 'package:project_a/models/tmdb_models/movie_basic.dart';
+import 'package:project_a/service/local_cache_service.dart';
 
 class TmdbService {
   static String apiKey = dotenv.get("TMDB_API_KEY");
@@ -40,7 +38,7 @@ class TmdbService {
       final data = json.decode(response.body);
       List<dynamic> cast = data["cast"];
 
-      return cast.map((cast) => TmdbMovieCast.fromJson(cast)).toList();
+      return cast.map((cast) => MovieCast.fromJson(cast)).toList();
     } catch (err) {
       rethrow;
     }
@@ -64,13 +62,13 @@ class TmdbService {
       }
 
       final data = json.decode(response.body);
-      return TmdbMovie.fromJson(data);
+      return Movie.fromJson(data);
     } catch (err) {
       rethrow;
     }
   }
 
-  static Future<List<MoviePreview>> getMoviePreviewListByTitle(
+  static Future<List<MovieBasic>> getMoviePreviewListByTitle(
     String title,
   ) async {
     Uri? uri = Uri.tryParse(
@@ -94,7 +92,7 @@ class TmdbService {
       final data = json.decode(response.body);
       final List<dynamic> movies = data["results"];
 
-      return movies.map((json) => TmdbMoviePreview.fromJson(json)).toList();
+      return movies.map((json) => MovieBasic.fromJson(json)).toList();
     } catch (err) {
       rethrow;
     }
