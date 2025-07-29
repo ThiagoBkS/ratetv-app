@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:project_a/models/tmdb_models/movie_basic.dart';
+import 'package:project_a/models/tmdb_models/basic_movie.dart';
 import 'package:project_a/utils/utils.dart';
 import 'package:project_a/widgets/movie_card/image_error_widget.dart';
 import 'package:project_a/widgets/movie_card/movie_details_sheet/movie_details_sheet.dart';
 
 class MovieCard extends StatelessWidget {
-  final MovieBasic details;
+  final BasicMovie basicMovie;
   final bool enableDetailsSheet;
   final bool enableBookmarked;
   final VoidCallback? onTap;
 
   const MovieCard({
     super.key,
-    required this.details,
+    required this.basicMovie,
     this.enableDetailsSheet = false,
     this.enableBookmarked = false,
     this.onTap,
@@ -38,12 +38,12 @@ class MovieCard extends StatelessWidget {
                 return Stack(
                   children: [
                     Image.network(
-                      details.posterUrl,
+                      basicMovie.posterUrl,
                       width: double.infinity,
                       height: double.infinity,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
-                        return ImageErrorWidget(label: details.title);
+                        return ImageErrorWidget(label: basicMovie.title);
                       },
                     ),
 
@@ -53,7 +53,7 @@ class MovieCard extends StatelessWidget {
                         child: InkWell(
                           onTap: onTap,
                           onLongPress: () {
-                            showMovieDetailsSheet(context, details);
+                            showMovieDetailsSheet(context, basicMovie);
                           },
                         ),
                       ),

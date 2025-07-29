@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:project_a/exceptions/error_message.dart';
 import 'package:project_a/models/tmdb_models/movie.dart';
@@ -51,6 +53,8 @@ class MoviePageState extends State<MoviePage> {
     }
   }
 
+  double opacity = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +88,7 @@ class MoviePageState extends State<MoviePage> {
                   ? const Center(child: CircularProgressIndicator())
                   : Stack(
                       children: [
-                        // MovieBackdrop(imageUrl: movie!.backdropUrl),
+                        MovieBackdrop(imageUrl: movie!.backdropUrl),
                         MovieContent(data: movie!, cast: cast!),
                       ],
                     )),

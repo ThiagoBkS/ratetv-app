@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_a/models/tmdb_models/movie_basic.dart';
-import 'package:project_a/pages/search_page.dart';
-import 'package:project_a/widgets/custom_search_bar.dart';
+import 'package:project_a/models/tmdb_models/basic_movie.dart';
 import 'package:project_a/widgets/home_widgets/genres_section.dart';
 import 'package:project_a/widgets/movie_list_section.dart';
 
@@ -95,7 +93,7 @@ class HomePage extends StatelessWidget {
       "vote_average": 7.4,
       "vote_count": 6,
     },
-  ].map((obj) => MovieBasic.fromJson(obj)).toList();
+  ].map((obj) => BasicMovie.fromJson(obj)).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -106,25 +104,6 @@ class HomePage extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SearchPage()),
-                  );
-                },
-                child: CustomSearchBar(
-                  onSearch: (value) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SearchPage(searchValue: value),
-                      ),
-                    );
-                  },
-                  focusNode: FocusNode(),
-                ),
-              ),
               GenresSection(),
               SizedBox(height: 16),
 

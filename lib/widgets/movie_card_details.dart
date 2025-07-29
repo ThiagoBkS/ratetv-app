@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/models/genre.dart';
-import 'package:project_a/models/tmdb_models/movie_basic.dart';
+import 'package:project_a/models/tmdb_models/basic_movie.dart';
 import 'package:project_a/widgets/genre_chip.dart';
 import 'package:project_a/widgets/movie_card/movie_card.dart';
 import 'package:intl/intl.dart';
+import 'package:project_a/widgets/movie_rating_info.dart';
 
 class MovieCardDetails extends StatelessWidget {
-  final MovieBasic details;
-  const MovieCardDetails({super.key, required this.details});
+  final BasicMovie basicMovie;
+  const MovieCardDetails({super.key, required this.basicMovie});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class MovieCardDetails extends StatelessWidget {
           children: [
             ConstrainedBox(
               constraints: BoxConstraints(maxHeight: 150),
-              child: MovieCard(details: details),
+              child: MovieCard(basicMovie: basicMovie),
             ),
             Expanded(
               flex: 3,
@@ -30,7 +31,7 @@ class MovieCardDetails extends StatelessWidget {
                 spacing: 4,
                 children: [
                   Text(
-                    details.title,
+                    basicMovie.title,
                     style: GoogleFonts.montserrat(
                       color: Colors.white,
                       fontSize: 16,
@@ -45,7 +46,7 @@ class MovieCardDetails extends StatelessWidget {
                         DateFormat(
                           "dd MMM. yyyy",
                           "pt_BR",
-                        ).format(details.releaseDate).toString(),
+                        ).format(basicMovie.releaseDate).toString(),
                         style: GoogleFonts.montserrat(
                           fontSize: 12,
                           color: Colors.white,
@@ -56,41 +57,16 @@ class MovieCardDetails extends StatelessWidget {
                   Wrap(
                     spacing: 4,
                     runSpacing: 4,
-                    children: List.generate(details.genreIds.length, (index) {
-                      int id = details.genreIds[index];
+                    children: List.generate(basicMovie.genreIds.length, (
+                      index,
+                    ) {
+                      int id = basicMovie.genreIds[index];
                       return GenreChip(label: Genre.getGenreById(id).label);
                     }),
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: 4,
-                    children: [
-                      Icon(
-                        Icons.star,
-                        size: 14,
-                        color: Color.fromRGBO(222, 181, 34, 1),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        spacing: 4,
-                        children: [
-                          Text(
-                            "${NumberFormat("#,##0.0", "pt_BR").format(details.voteAverage)}/10",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 12,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Text(
-                            "(${NumberFormat.decimalPattern('pt_BR').format(details.voteCount)})",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 12,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                  MovieRatingInfo(
+                    voteAverage: basicMovie.voteAverage,
+                    voteCount: basicMovie.voteCount,
                   ),
                 ],
               ),
@@ -98,7 +74,7 @@ class MovieCardDetails extends StatelessWidget {
           ],
         ),
         Text(
-          details.overview,
+          basicMovie.overview,
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
           style: GoogleFonts.montserrat(

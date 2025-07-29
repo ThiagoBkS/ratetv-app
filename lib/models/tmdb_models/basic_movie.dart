@@ -1,7 +1,7 @@
 import 'package:project_a/service/tmdb_service.dart';
 import 'package:project_a/utils/data_adapter.dart';
 
-class MovieBasic {
+class BasicMovie {
   final bool isAdult;
   final String backdropUrl;
   final List<int> genreIds;
@@ -13,7 +13,7 @@ class MovieBasic {
   final double voteAverage;
   final int voteCount;
 
-  MovieBasic({
+  BasicMovie({
     required this.isAdult,
     required this.backdropUrl,
     required this.genreIds,
@@ -26,8 +26,8 @@ class MovieBasic {
     required this.voteCount,
   });
 
-  factory MovieBasic.fromJson(Map<String, dynamic> json) {
-    return MovieBasic(
+  factory BasicMovie.fromJson(Map<String, dynamic> json) {
+    return BasicMovie(
       isAdult: DataAdapter.parseBool(json["adult"], false),
       backdropUrl: DataAdapter.parseString(
         TmdbService.getFullImageSrc(json["backdrop_path"]),

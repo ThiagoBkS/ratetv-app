@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project_a/models/tmdb_models/movie_basic.dart';
+import 'package:project_a/models/tmdb_models/basic_movie.dart';
 import 'package:project_a/pages/movie_page.dart';
 import 'package:project_a/service/tmdb_service.dart';
+import 'package:project_a/utils/utils.dart';
 import 'package:project_a/widgets/custom_search_bar.dart';
 import 'package:project_a/widgets/movie_card/movie_card.dart';
 
@@ -16,7 +17,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class SearchPageState extends State<SearchPage> {
-  Future<List<MovieBasic>>? results;
+  Future<List<BasicMovie>>? results;
   FocusNode searchFocusNode = FocusNode();
 
   @override
@@ -52,7 +53,7 @@ class SearchPageState extends State<SearchPage> {
             ),
 
             Expanded(
-              child: FutureBuilder<List<MovieBasic>>(
+              child: FutureBuilder<List<BasicMovie>>(
                 future: results,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -71,22 +72,14 @@ class SearchPageState extends State<SearchPage> {
                     mainAxisSpacing: 8,
                     childAspectRatio: 1 / 1.5,
                     children: List.generate(movies.length, (index) {
+                      BasicMovie basicMovie = movies[index];
+
                       return MovieCard(
-                        details: movies[index],
+                        basicMovie: basicMovie,
                         enableBookmarked: true,
                         enableDetailsSheet: true,
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MoviePage(
-                                movieId: movies[index].id,
-                                onBackToMain: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ),
-                          );
+                          goToMoviePage(context, basicMovie.id);
                         },
                       );
                     }),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:project_a/widgets/genre_chip.dart';
 
 final List<Genre> availableGenres = [
   Genre(id: 28, label: "Action", icon: LucideIcons.swords300),
@@ -32,5 +33,11 @@ class Genre {
 
   static Genre getGenreById(int id) {
     return availableGenres.firstWhere((genre) => genre.id == id);
+  }
+
+  static List<GenreChip> getGenreChipsByIds(List<int> ids) {
+    return ids
+        .map((id) => GenreChip(label: Genre.getGenreById(id).label))
+        .toList();
   }
 }

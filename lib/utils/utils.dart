@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:project_a/pages/movie_page.dart';
 import 'package:project_a/utils/data_adapter.dart';
-import 'package:intl/intl.dart';
 
 final _currencyFormatter = NumberFormat.currency(
   locale: "pt_BR",
   symbol: "R\$",
 );
+
+final _dateFormatter = DateFormat.yMMMMd("pt_BR");
 
 double valueOfPercentage(double value, double percentage) {
   return value * percentage;
@@ -21,6 +24,17 @@ String formatCurrency(dynamic value) {
 }
 
 String formatDate(DateTime date) {
-  final _dateFormatter = DateFormat.yMMMMd("pt_BR");
   return _dateFormatter.format(date);
+}
+
+void goToMoviePage(BuildContext context, int movieId) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => MoviePage(
+        movieId: movieId,
+        onBackToMain: () => {Navigator.pop(context)},
+      ),
+    ),
+  );
 }

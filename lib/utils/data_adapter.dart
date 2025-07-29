@@ -51,7 +51,7 @@ class DataAdapter {
           .toList();
     }
 
-    return defaultValue;
+    return [];
   }
 
   static DateTime parseDateTime(dynamic value, DateTime defaultValue) {

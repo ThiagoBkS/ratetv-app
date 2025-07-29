@@ -5,7 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:project_a/models/tmdb_models/movie.dart';
 import 'package:project_a/models/tmdb_models/movie_cast.dart';
-import 'package:project_a/models/tmdb_models/movie_basic.dart';
+import 'package:project_a/models/tmdb_models/basic_movie.dart';
 
 class TmdbService {
   static String apiKey = dotenv.get("TMDB_API_KEY");
@@ -67,7 +67,7 @@ class TmdbService {
     }
   }
 
-  static Future<List<MovieBasic>> getMoviePreviewListByTitle(
+  static Future<List<BasicMovie>> getMoviePreviewListByTitle(
     String title,
   ) async {
     Uri? uri = Uri.tryParse(
@@ -91,7 +91,35 @@ class TmdbService {
       final data = json.decode(response.body);
       final List<dynamic> movies = data["results"];
 
-      return movies.map((json) => MovieBasic.fromJson(json)).toList();
+      return movies.map((json) => BasicMovie.fromJson(json)).toList();
+    } catch (err) {
+      rethrow;
+    }
+  }
+
+  static Future<List<BasicMovie>> getPopularMoviesByGenreId(int genreId) async {
+    Uri? uri = Uri.tryParse(
+      "$apiBaseUrl/discover/movie?api_key=$apiKey&with_genres=$genreId&sort_by=popularity.desc",
+    );
+
+    if (uri == null) {
+      throw FormatException(
+        "Unable to get movies by genre: $genreId, malformed URI",
+      );
+    }
+
+    try {
+      final response = await http.get(uri);
+      if (response.statusCode != 200) {
+        throw HttpException(
+          "Unable to get movies by genre: $genreId, status ${response.statusCode}",
+        );
+      }
+
+      final data = json.decode(response.body);
+      final List<dynamic> movies = data["results"];
+
+      return movies.map((json) => BasicMovie.fromJson(json)).toList();
     } catch (err) {
       rethrow;
     }

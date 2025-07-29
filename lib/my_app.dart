@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_a/pages/blank_page.dart';
+import 'package:project_a/pages/collection_page.dart';
 import 'package:project_a/pages/main_page.dart';
 import 'package:project_a/utils/palette.dart';
 
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       home: MainPage(),
       // home: BlankPage(),
+      // home: CollectionPage(),
     );
   }
 }

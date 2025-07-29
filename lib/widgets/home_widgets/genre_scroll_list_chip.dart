@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/models/genre.dart';
+import 'package:project_a/pages/collection_page.dart';
 import 'package:project_a/utils/utils.dart';
 
 class GenreScrollListChip extends StatelessWidget {
@@ -20,7 +21,12 @@ class GenreScrollListChip extends StatelessWidget {
           borderRadius: BorderRadius.circular(radius),
           color: Color.fromRGBO(35, 41, 45, 1),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CollectionPage()),
+              );
+            },
             borderRadius: BorderRadius.circular(radius),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16),

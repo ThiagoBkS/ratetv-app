@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/tmdb_models/movie_basic.dart';
+import 'package:project_a/models/tmdb_models/basic_movie.dart';
 import 'package:project_a/pages/movie_page.dart';
 import 'package:project_a/widgets/movie_card/movie_card.dart';
 
 class MovieListSection extends StatelessWidget {
   final String label;
-  final List<MovieBasic> movies;
+  final List<BasicMovie> movies;
 
   const MovieListSection({
     super.key,
@@ -33,18 +33,20 @@ class MovieListSection extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: List.generate(movies.length, (index) {
+              BasicMovie basicMovie = movies[index];
+
               return Padding(
                 padding: EdgeInsets.only(right: 8),
                 child: MovieCard(
-                  details: movies[index],
+                  basicMovie: basicMovie,
                   enableDetailsSheet: true,
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => MoviePage(
-                          movieId: movies[index].id,
-                          onBackToMain: () => {Navigator.pop(context)},
+                          movieId: basicMovie.id,
+                          onBackToMain: () => Navigator.pop(context),
                         ),
                       ),
                     );

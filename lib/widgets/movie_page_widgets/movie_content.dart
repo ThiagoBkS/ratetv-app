@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,11 +21,11 @@ class MovieContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(16),
-      child: ListView(
-        children: [
-          Column(
+    return ListView(
+      children: [
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
             spacing: 8,
             children: [
               MovieHeader(data: data),
@@ -66,15 +64,14 @@ class MovieContent extends StatelessWidget {
                   productionCountry: data.productionCountry,
                 ),
               ),
-
               Text(
                 "Todos os dados exibidos nesta aplicação são fornecidos pela API do The Movie Database (TMDb).",
                 style: GoogleFonts.montserrat(color: Colors.grey, fontSize: 14),
               ),
             ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
