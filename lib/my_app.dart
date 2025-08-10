@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/pages/blank_page.dart';
-import 'package:project_a/pages/collection_page.dart';
-import 'package:project_a/pages/main_page.dart';
+import 'package:project_a/pages/statistics_page.dart';
 import 'package:project_a/utils/palette.dart';
 
 class MyApp extends StatelessWidget {
@@ -10,18 +9,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: Palette.primaryColor,
-        textTheme: GoogleFonts.montserratTextTheme(
-          ThemeData(brightness: Brightness.dark).textTheme,
-        ),
-      ),
-      home: MainPage(),
-      // home: BlankPage(),
-      // home: CollectionPage(),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            brightness: Brightness.dark,
+            scaffoldBackgroundColor: Palette.primaryColor,
+            textTheme: GoogleFonts.montserratTextTheme(
+              ThemeData(brightness: Brightness.dark).textTheme,
+            ),
+          ),
+          home: StatisticsPage(),
+        );
+      },
     );
   }
 }

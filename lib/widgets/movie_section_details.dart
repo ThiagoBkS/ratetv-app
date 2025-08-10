@@ -1,7 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/genre.dart';
 import 'package:project_a/models/tmdb_models/movie.dart';
 import 'package:project_a/utils/font_size.dart';
 import 'package:project_a/utils/spacing.dart';
@@ -19,14 +20,16 @@ class MovieSectionDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: Spacing.small,
         children: [
-          Text(
+          AutoSizeText(
             data.title,
+            maxLines: 2,
             style: GoogleFonts.montserrat(
               color: Colors.white,
-              fontSize: FontSize.extraLarge,
+              fontSize: 20.sp,
               fontWeight: FontWeight.w700,
             ),
           ),
+
           Row(
             spacing: Spacing.extraSmall,
             children: [
@@ -44,12 +47,13 @@ class MovieSectionDetails extends StatelessWidget {
               ),
             ],
           ),
-
           Wrap(
-            spacing: Spacing.small,
-            children: data.genreIds
-                .map((id) => GenreChip(label: Genre.getGenreById(id).label))
-                .toList(),
+            spacing: 4,
+            runSpacing: 4,
+            children: List.generate(data.genres.length, (index) {
+              String label = data.genres[index];
+              return GenreChip(label: label);
+            }),
           ),
 
           Row(

@@ -51,7 +51,22 @@ class DataAdapter {
           .toList();
     }
 
-    return [];
+    return defaultValue;
+  }
+
+  static List<String> parseStringList(
+    dynamic value, [
+    List<String> defaultValue = const [],
+  ]) {
+    if (value is List<String>) {
+      return value;
+    } else if (value is String) {
+      return value.split(",").map((e) => e.trim()).toList();
+    } else if (value is List<dynamic>) {
+      return value.map((e) => e.toString()).toList();
+    }
+
+    return defaultValue;
   }
 
   static DateTime parseDateTime(dynamic value, DateTime defaultValue) {

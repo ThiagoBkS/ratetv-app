@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/genre.dart';
 import 'package:project_a/models/tmdb_models/movie.dart';
 import 'package:project_a/models/tmdb_models/basic_movie.dart';
 import 'package:project_a/utils/spacing.dart';
 import 'package:project_a/utils/utils.dart';
+import 'package:project_a/widgets/genre_chip.dart';
 import 'package:project_a/widgets/movie_card/movie_card.dart';
 import 'package:project_a/widgets/movie_card/movie_details_sheet/movie_details_sheet.dart';
 import 'package:project_a/widgets/movie_rating_info.dart';
@@ -84,14 +84,15 @@ class MovieCollectionCard extends StatelessWidget {
                                   voteAverage: basicMovie.voteAverage,
                                   voteCount: basicMovie.voteCount,
                                 ),
-
                                 Wrap(
                                   spacing: 4,
                                   runSpacing: 4,
-                                  children: List.from(
-                                    Genre.getGenreChipsByIds(
-                                      basicMovie.genreIds,
-                                    ),
+                                  children: List.generate(
+                                    basicMovie.genres.length,
+                                    (index) {
+                                      String label = basicMovie.genres[index];
+                                      return GenreChip(label: label);
+                                    },
                                   ),
                                 ),
                               ],

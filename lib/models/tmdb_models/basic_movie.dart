@@ -4,7 +4,7 @@ import 'package:project_a/utils/data_adapter.dart';
 class BasicMovie {
   final bool isAdult;
   final String backdropUrl;
-  final List<int> genreIds;
+  final List<String> genres;
   final int id;
   final String overview;
   final String posterUrl;
@@ -16,7 +16,7 @@ class BasicMovie {
   BasicMovie({
     required this.isAdult,
     required this.backdropUrl,
-    required this.genreIds,
+    required this.genres,
     required this.id,
     required this.overview,
     required this.posterUrl,
@@ -33,7 +33,7 @@ class BasicMovie {
         TmdbService.getFullImageSrc(json["backdrop_path"]),
         "",
       ),
-      genreIds: DataAdapter.parseIntList(json['genre_ids'], []),
+      genres: DataAdapter.parseStringList(json['genres'], []),
       id: DataAdapter.parseInt(json['id'], -1),
       overview: DataAdapter.parseString(
         json['overview'],

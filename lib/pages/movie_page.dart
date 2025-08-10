@@ -1,9 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:project_a/exceptions/error_message.dart';
 import 'package:project_a/models/tmdb_models/movie.dart';
 import 'package:project_a/models/tmdb_models/movie_cast.dart';
+import 'package:project_a/service/rate_tv_service.dart';
 import 'package:project_a/service/tmdb_service.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_backdrop.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_content.dart';
@@ -42,7 +41,7 @@ class MoviePageState extends State<MoviePage> {
 
   void fetchData() async {
     try {
-      movie = await TmdbService.getMovieById(widget.movieId);
+      movie = await RateTvService.getMovieByTmdbId(widget.movieId);
       cast = await TmdbService.getMovieCastList(widget.movieId);
       setState(() {});
     } catch (err) {
@@ -58,10 +57,10 @@ class MoviePageState extends State<MoviePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Filme"),
-      //   leading: BackButton(onPressed: onBackToMain),
-      // ),
+      appBar: AppBar(
+        title: Text("Filme"),
+        leading: BackButton(onPressed: onBackToMain),
+      ),
       body: SafeArea(
         child: errorMessage != null
             ? Center(

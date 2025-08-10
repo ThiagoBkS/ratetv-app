@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/models/genre.dart';
 import 'package:project_a/models/tmdb_models/basic_movie.dart';
 import 'package:project_a/widgets/genre_chip.dart';
 import 'package:project_a/widgets/movie_card/movie_card.dart';
@@ -57,11 +56,9 @@ class MovieCardDetails extends StatelessWidget {
                   Wrap(
                     spacing: 4,
                     runSpacing: 4,
-                    children: List.generate(basicMovie.genreIds.length, (
-                      index,
-                    ) {
-                      int id = basicMovie.genreIds[index];
-                      return GenreChip(label: Genre.getGenreById(id).label);
+                    children: List.generate(basicMovie.genres.length, (index) {
+                      String label = basicMovie.genres[index];
+                      return GenreChip(label: label);
                     }),
                   ),
                   MovieRatingInfo(

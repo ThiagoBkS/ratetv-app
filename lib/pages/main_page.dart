@@ -1,8 +1,10 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:project_a/pages/home_page.dart';
 import 'package:project_a/pages/movie_page.dart';
 import 'package:project_a/pages/profile_page.dart';
 import 'package:project_a/pages/search_page.dart';
+import 'package:project_a/pages/statistics_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -28,11 +30,23 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
+  final pages = [SearchPage(), StatisticsPage(), ProfilePage()];
+
   Widget get currentPage {
     if (selectedMovieId != null) {
       return MoviePage(
         movieId: selectedMovieId!,
         onBackToMain: () => setState(() => selectedMovieId = null),
+      );
+    }
+
+    if (currentPageIndex == 0) {
+      return HomePage(
+        onMovieSelected: (movieId) {
+          setState(() {
+            selectedMovieId = movieId;
+          });
+        },
       );
     }
 
@@ -48,6 +62,8 @@ class _MainPageState extends State<MainPage> {
       case 1:
         return const SearchPage();
       case 2:
+        return StatisticsPage();
+      case 3:
         return const ProfilePage();
 
       default:
@@ -78,6 +94,11 @@ class _MainPageState extends State<MainPage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.search),
               label: "Search",
+              backgroundColor: Colors.transparent,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(FluentIcons.data_pie_16_filled),
+              label: "Estatisticas",
               backgroundColor: Colors.transparent,
             ),
             BottomNavigationBarItem(

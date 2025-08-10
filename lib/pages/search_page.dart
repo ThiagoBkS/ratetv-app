@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_a/models/tmdb_models/basic_movie.dart';
-import 'package:project_a/pages/movie_page.dart';
 import 'package:project_a/service/tmdb_service.dart';
 import 'package:project_a/utils/utils.dart';
 import 'package:project_a/widgets/custom_search_bar.dart';

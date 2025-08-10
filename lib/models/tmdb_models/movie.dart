@@ -7,7 +7,7 @@ class Movie {
   final bool isAdult;
   final String backdropUrl;
   final int budget;
-  final List<int> genreIds;
+  final List<String> genres;
   final int id;
   final String imdbId;
   final String overview;
@@ -29,7 +29,7 @@ class Movie {
     required this.isAdult,
     required this.backdropUrl,
     required this.budget,
-    required this.genreIds,
+    required this.genres,
     required this.id,
     required this.imdbId,
     required this.overview,
@@ -64,7 +64,7 @@ class Movie {
         "",
       ),
       budget: DataAdapter.parseInt(json["budget"], 0),
-      genreIds: DataAdapter.parseIntList(json['genre_ids'], []), // Corrijir
+      genres: DataAdapter.parseStringList(json['genres'], []),
       id: DataAdapter.parseInt(json['id'], -1),
       imdbId: DataAdapter.parseString(json["tagline"], ""),
       overview: DataAdapter.parseString(

@@ -27,7 +27,7 @@ class MovieHeader extends StatelessWidget {
                 basicMovie: BasicMovie(
                   isAdult: data.isAdult,
                   backdropUrl: data.backdropUrl,
-                  genreIds: data.genreIds,
+                  genres: data.genres,
                   id: data.id,
                   overview: data.overview,
                   posterUrl: data.posterUrl,
