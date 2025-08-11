@@ -5,6 +5,8 @@ import 'package:project_a/models/production/movie_production.dart';
 import 'package:project_a/models/production/origin_country.dart';
 import 'package:project_a/models/tmdb_models/movie.dart';
 import 'package:project_a/models/tmdb_models/movie_cast.dart';
+import 'package:project_a/service/rate_tv_service.dart';
+import 'package:project_a/service/tmdb_service.dart';
 import 'package:project_a/utils/palette.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_action/movie_action_button.dart';
 import 'package:project_a/widgets/movie_page_widgets/movie_action/movie_action_buttons.dart';
@@ -34,6 +36,12 @@ class MovieContent extends StatelessWidget {
                   MovieActionButton(
                     icon: FontAwesomeIcons.check,
                     label: "Já Assisti",
+                    onTap: () {
+                      try {
+                        RateTvService.sendWatchedMovie(data.id);
+                      } catch (err) {}
+                      ;
+                    },
                   ),
                   MovieActionButton(
                     icon: FontAwesomeIcons.bookmark,

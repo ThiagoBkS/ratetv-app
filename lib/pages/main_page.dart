@@ -30,7 +30,14 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-  final pages = [SearchPage(), StatisticsPage(), ProfilePage()];
+  final pages = [
+    SearchPage(),
+    StatisticsPage(),
+    ProfilePage(
+      publicId:
+          "d6fc1650553d0b6cb60b5ccd4eb8aeb62f12320e39a767e1d6087e523d5ee2fa",
+    ),
+  ];
 
   Widget get currentPage {
     if (selectedMovieId != null) {
@@ -64,7 +71,10 @@ class _MainPageState extends State<MainPage> {
       case 2:
         return StatisticsPage();
       case 3:
-        return const ProfilePage();
+        return const ProfilePage(
+          publicId:
+              "d6fc1650553d0b6cb60b5ccd4eb8aeb62f12320e39a767e1d6087e523d5ee2fa",
+        );
 
       default:
         return const Center(child: Text("Not Found"));

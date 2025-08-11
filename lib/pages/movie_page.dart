@@ -23,7 +23,7 @@ class MoviePage extends StatefulWidget {
 
 class MoviePageState extends State<MoviePage> {
   Movie? movie;
-  List<MovieCast>? cast;
+  // List<MovieCast>? cast;
   ErrorMessage? errorMessage;
 
   late int movieId;
@@ -41,8 +41,8 @@ class MoviePageState extends State<MoviePage> {
 
   void fetchData() async {
     try {
-      movie = await RateTvService.getMovieByTmdbId(widget.movieId);
-      cast = await TmdbService.getMovieCastList(widget.movieId);
+      movie = await RateTvService.getMovieById(movieId);
+      // cast = await TmdbService.getMovieCastList(widget.movieId);
       setState(() {});
     } catch (err) {
       errorMessage = ErrorMessage(
@@ -88,7 +88,7 @@ class MoviePageState extends State<MoviePage> {
                   : Stack(
                       children: [
                         MovieBackdrop(imageUrl: movie!.backdropUrl),
-                        MovieContent(data: movie!, cast: cast!),
+                        MovieContent(data: movie!, cast: []),
                       ],
                     )),
       ),
