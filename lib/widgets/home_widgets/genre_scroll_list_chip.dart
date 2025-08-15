@@ -19,7 +19,7 @@ class GenreScrollListChip extends StatelessWidget {
 
         return Material(
           borderRadius: BorderRadius.circular(radius),
-          color: Color.fromRGBO(35, 41, 45, 1),
+          color: Color.fromRGBO(20, 27, 34, 1),
           child: InkWell(
             onTap: () {
               Navigator.push(

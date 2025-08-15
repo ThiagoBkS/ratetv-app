@@ -30,6 +30,17 @@ class MovieDetailsSheet extends StatelessWidget {
         label: "Já Assitis",
         icon: LucideIcons.circle300,
         onTap: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                '${basicMovie.title} adicionado para assitir mais tarde!',
+                style: GoogleFonts.montserrat(color: Colors.white),
+              ),
+              duration: Duration(seconds: 2),
+              backgroundColor: Color.fromRGBO(56, 63, 68, 1),
+              elevation: 4,
+            ),
+          );
           try {
             RateTvService.sendWatchedMovie(basicMovie.id);
           } catch (err) {

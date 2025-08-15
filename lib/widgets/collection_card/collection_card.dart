@@ -1,19 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_a/utils/palette.dart';
-
-class Collection {
-  final String title;
-  final String description;
-  final String backdropUrl;
-
-  const Collection({
-    required this.title,
-    required this.description,
-    required this.backdropUrl,
-  });
-}
+import 'package:project_a/models/basic_collection.dart';
+import 'package:project_a/pages/collection_page.dart';
 
 class CollectionCard extends StatelessWidget {
   final Collection collection;
@@ -76,6 +65,7 @@ class CollectionCard extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     Padding(
                       padding: EdgeInsets.all(16.w),
                       child: FractionallySizedBox(
@@ -108,10 +98,21 @@ class CollectionCard extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     Material(
                       color: Colors.transparent,
                       borderRadius: BorderRadius.circular(4.r),
-                      child: InkWell(onTap: () {}, onLongPress: () {}),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CollectionPage(),
+                            ),
+                          );
+                        },
+                        onLongPress: () {},
+                      ),
                     ),
                   ],
                 ),

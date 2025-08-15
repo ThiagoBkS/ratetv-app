@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/models/tmdb_models/basic_movie.dart';
 import 'package:project_a/utils/utils.dart';
 import 'package:project_a/widgets/movie_card/image_error_widget.dart';
@@ -65,7 +66,21 @@ class MovieCard extends StatelessWidget {
                         width: valueOfGridFlex(maxWidth, 2.5),
                         height: valueOfGridFlex(maxHeight, 2.5),
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  '${basicMovie.title} adicionado para assitir mais tarde!',
+                                  style: GoogleFonts.montserrat(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                duration: Duration(seconds: 2),
+                                backgroundColor: Color.fromRGBO(56, 63, 68, 1),
+                                elevation: 4,
+                              ),
+                            );
+                          },
                           style: IconButton.styleFrom(
                             backgroundColor: Color.fromRGBO(33, 37, 40, 0.95),
                             shape: RoundedRectangleBorder(

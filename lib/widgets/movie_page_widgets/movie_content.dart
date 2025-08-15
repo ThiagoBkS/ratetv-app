@@ -37,6 +37,18 @@ class MovieContent extends StatelessWidget {
                     icon: FontAwesomeIcons.check,
                     label: "Já Assisti",
                     onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            '${data.title} adicionado como assitido!',
+                            style: GoogleFonts.montserrat(color: Colors.white),
+                          ),
+                          duration: Duration(seconds: 2),
+                          backgroundColor: Color.fromRGBO(56, 63, 68, 1),
+                          elevation: 4,
+                        ),
+                      );
+
                       try {
                         RateTvService.sendWatchedMovie(data.id);
                       } catch (err) {}

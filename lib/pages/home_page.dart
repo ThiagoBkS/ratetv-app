@@ -1,9 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:project_a/exceptions/error_message.dart';
+import 'package:project_a/models/basic_collection.dart';
 import 'package:project_a/models/tmdb_models/basic_movie.dart';
 import 'package:project_a/service/rate_tv_service.dart';
+import 'package:project_a/widgets/collection_card/collection_card.dart';
 import 'package:project_a/widgets/home_widgets/genres_section.dart';
 import 'package:project_a/widgets/movie_list_section.dart';
 
@@ -99,17 +103,41 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(8.h),
         child: ListView(
           scrollDirection: Axis.vertical,
           children: [
             GenresSection(),
-            SizedBox(height: 16),
+
+            SizedBox(height: 16.h),
+
+            SizedBox(
+              width: double.infinity,
+              height: 200,
+              child: CollectionCard(
+                collection: Collection(
+                  title: "Os 100 filmes mais bem avaliados",
+                  description:
+                      "Os maiores sucessos do cinema, segundo a avaliação do público e da crítica.",
+                  backdropUrl:
+                      "https://image.tmdb.org/t/p/w1280/41xIKcLiM5ryfz4C9sZFcBOJGsK.jpg",
+                ),
+                color: Color.fromRGBO(20, 27, 34, 1),
+              ),
+            ),
+
+            SizedBox(height: 16.h),
+
             FutureBuilder<List<HomeSection>>(
               future: sections,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: Text("ops"));
+                  return Center(
+                    child: LoadingAnimationWidget.inkDrop(
+                      color: Color.fromRGBO(135, 206, 235, 1),
+                      size: 48,
+                    ),
+                  );
                 }
 
                 if (snapshot.hasError) {

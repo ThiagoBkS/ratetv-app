@@ -5,8 +5,10 @@ import 'package:project_a/models/tmdb_models/basic_movie.dart';
 import 'package:project_a/models/tmdb_models/movie.dart';
 
 class RateTvService {
+  static final String basicUrl = "http://192.168.15.3:8080";
+
   static Future<List<BasicMovie>> getWatchedMovies(String publicId) async {
-    final uri = Uri.tryParse("http://192.168.15.6:8080/watched/user/$publicId");
+    final uri = Uri.tryParse("$basicUrl/watched/user/$publicId");
 
     if (uri == null) {
       throw FormatException(
@@ -33,7 +35,7 @@ class RateTvService {
   }
 
   static Future<Movie> getMovieById(int id) async {
-    final uri = Uri.tryParse("http://192.168.15.6:8080/api/movie/$id");
+    final uri = Uri.tryParse("$basicUrl/api/movie/$id");
 
     if (uri == null) {
       print("opa");
@@ -58,9 +60,7 @@ class RateTvService {
   }
 
   static Future<Movie> getMovieByTmdbId(int id) async {
-    final uri = Uri.tryParse(
-      "http://192.168.15.6:8080/api/movie/external/tmdb/$id",
-    );
+    final uri = Uri.tryParse("$basicUrl/api/movie/external/tmdb/$id");
 
     if (uri == null) {
       print("opa");
@@ -85,7 +85,7 @@ class RateTvService {
   }
 
   static Future<List<BasicMovie>> getMoviesByGenre(int id) async {
-    final uri = Uri.tryParse("http://192.168.15.6:8080/api/movie/genre/$id");
+    final uri = Uri.tryParse("$basicUrl/api/movie/genre/$id");
 
     if (uri == null) {
       throw FormatException("Unable to get movie by ID: $id, malformed URI");
@@ -111,7 +111,7 @@ class RateTvService {
 
   static Future<http.Response> sendWatchedMovie(int movieId) {
     try {
-      final url = Uri.parse('http://192.168.15.6:8080/watched/add');
+      final url = Uri.parse('$basicUrl/watched/add');
 
       final body = jsonEncode({
         "user_id":
@@ -125,6 +125,33 @@ class RateTvService {
         body: body,
       );
     } catch (err) {
+      rethrow;
+    }
+  }
+
+  static Future<List<BasicMovie>> getCollectionItems(int collectionId) async {
+    final uri = Uri.tryParse("$basicUrl/collection/$collectionId");
+
+    if (uri == null) {
+      throw FormatException(
+        "Unable to get movie by ID: $collectionId, malformed URI",
+      );
+    }
+
+    try {
+      final response = await http.get(uri);
+
+      if (response.statusCode != 200) {
+        throw HttpException(
+          "Unable to get movie by ID: $collectionId, status ${response.statusCode}",
+        );
+      }
+
+      final List<dynamic> data = json.decode(response.body);
+
+      return data.map((item) => BasicMovie.fromJson(item)).toList();
+    } catch (err) {
+      print("Error fetching movie by ID $collectionId: $err");
       rethrow;
     }
   }

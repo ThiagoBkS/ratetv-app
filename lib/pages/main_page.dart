@@ -68,9 +68,8 @@ class _MainPageState extends State<MainPage> {
         );
       case 1:
         return const SearchPage();
+
       case 2:
-        return StatisticsPage();
-      case 3:
         return const ProfilePage(
           publicId:
               "d6fc1650553d0b6cb60b5ccd4eb8aeb62f12320e39a767e1d6087e523d5ee2fa",
@@ -104,11 +103,6 @@ class _MainPageState extends State<MainPage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.search),
               label: "Search",
-              backgroundColor: Colors.transparent,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(FluentIcons.data_pie_16_filled),
-              label: "Estatisticas",
               backgroundColor: Colors.transparent,
             ),
             BottomNavigationBarItem(
