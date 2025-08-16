@@ -36,7 +36,13 @@ class MovieCollectionCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 8,
                   children: [
-                    Flexible(flex: 2, child: MovieCard(basicMovie: basicMovie)),
+                    Flexible(
+                      flex: 2,
+                      child: MovieCard(
+                        basicMovie: basicMovie,
+                        enableBookmarked: true,
+                      ),
+                    ),
                     Expanded(
                       flex: 6,
                       child: SizedBox(

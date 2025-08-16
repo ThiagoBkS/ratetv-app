@@ -35,6 +35,7 @@ class MovieHeader extends StatelessWidget {
                   title: data.title,
                   voteAverage: data.voteAverage,
                   voteCount: data.voteCount,
+                  isWatched: false,
                 ),
               ),
             ),

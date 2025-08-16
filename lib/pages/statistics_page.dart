@@ -225,6 +225,7 @@ class StatisticsPage extends StatelessWidget {
                                             title: "Superman",
                                             voteAverage: 7.7,
                                             voteCount: 1622,
+                                            isWatched: false,
                                           ),
                                         ),
                                         Positioned(

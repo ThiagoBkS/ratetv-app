@@ -12,6 +12,7 @@ class BasicMovie {
   final String title;
   final double voteAverage;
   final int voteCount;
+  final bool isWatched;
 
   BasicMovie({
     required this.isAdult,
@@ -24,6 +25,7 @@ class BasicMovie {
     required this.title,
     required this.voteAverage,
     required this.voteCount,
+    required this.isWatched,
   });
 
   factory BasicMovie.fromJson(Map<String, dynamic> json) {
@@ -50,6 +52,7 @@ class BasicMovie {
       title: DataAdapter.parseString(json['title'], "Sem título"),
       voteAverage: DataAdapter.parseDouble(json['vote_average'], 0.0),
       voteCount: DataAdapter.parseInt(json['vote_count'], 0),
+      isWatched: DataAdapter.parseBool(json["watched"], false),
     );
   }
 }

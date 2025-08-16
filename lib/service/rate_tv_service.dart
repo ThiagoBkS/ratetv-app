@@ -5,7 +5,7 @@ import 'package:project_a/models/tmdb_models/basic_movie.dart';
 import 'package:project_a/models/tmdb_models/movie.dart';
 
 class RateTvService {
-  static final String basicUrl = "http://192.168.15.3:8080";
+  static final String basicUrl = "http://192.168.15.7:8080";
 
   static Future<List<BasicMovie>> getWatchedMovies(String publicId) async {
     final uri = Uri.tryParse("$basicUrl/watched/user/$publicId");
@@ -130,7 +130,7 @@ class RateTvService {
   }
 
   static Future<List<BasicMovie>> getCollectionItems(int collectionId) async {
-    final uri = Uri.tryParse("$basicUrl/collection/$collectionId");
+    final uri = Uri.tryParse("$basicUrl/collection/$collectionId?userId=1");
 
     if (uri == null) {
       throw FormatException(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_a/models/tmdb_models/basic_movie.dart';
@@ -90,6 +91,41 @@ class MovieCard extends StatelessWidget {
                             ),
                           ),
                           icon: Icon(FontAwesomeIcons.bookmark, size: 18),
+                        ),
+                      ),
+
+                    if (basicMovie.isWatched)
+                      Positioned(
+                        right: 0,
+                        bottom: 0,
+                        width: valueOfGridFlex(maxWidth, 2.5),
+                        height: valueOfGridFlex(maxWidth, 2.5),
+                        child: IconButton(
+                          onPressed: () {},
+                          style: IconButton.styleFrom(
+                            backgroundColor: Color.fromRGBO(33, 37, 40, 0.95),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(8),
+                              ),
+                            ),
+                          ),
+                          icon: Row(
+                            spacing: 4,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                FontAwesomeIcons.check,
+                                size: 14,
+                                color: Colors.blue,
+                              ),
+                              // Text(
+                              //   "8.3",
+                              //   style: GoogleFonts.montserrat(fontSize: 12.sp),
+                              // ),
+                            ],
+                          ),
                         ),
                       ),
                   ],
